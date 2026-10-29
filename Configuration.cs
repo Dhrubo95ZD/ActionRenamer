@@ -57,6 +57,12 @@ public class Configuration : IPluginConfiguration
     /// <summary>Write each replacement to dalamud.log (for troubleshooting).</summary>
     public bool LogChanges { get; set; }
 
+    /// <summary>Install the bundled sci-fi icon mod into Penumbra automatically.</summary>
+    public bool AutoInstallIcons { get; set; } = true;
+
+    /// <summary>Icon pack version last installed into Penumbra.</summary>
+    public string InstalledIconPackVersion { get; set; } = string.Empty;
+
     /// <summary>Rename job names and every skill and trait with the built-in sci-fi theme.</summary>
     public bool SkillThemeEnabled { get; set; } = true;
 

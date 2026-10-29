@@ -113,6 +113,13 @@ public sealed class ConfigWindow : Window
         ImGui.SameLine(); dirty |= Check("Log changes", () => cfg.LogChanges, v => cfg.LogChanges = v);
         if (ImGui.IsItemHovered()) ImGui.SetTooltip("Writes each replacement to dalamud.log, for troubleshooting.");
 
+        dirty |= Check("Install sci-fi icons in Penumbra", () => cfg.AutoInstallIcons, v => cfg.AutoInstallIcons = v);
+        ImGui.SameLine();
+        if (ImGui.SmallButton("Reinstall icons"))
+            plugin.Icons.Reinstall();
+        ImGui.SameLine();
+        ImGui.TextDisabled(plugin.Icons.Status);
+
         if (ImGui.BeginTabBar("tabs"))
         {
             if (ImGui.BeginTabItem("Skills"))

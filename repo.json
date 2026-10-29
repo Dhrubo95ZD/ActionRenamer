@@ -1,0 +1,22 @@
+[
+  {
+    "Author": "Dhrubo95ZD",
+    "Name": "Action Renamer",
+    "InternalName": "ActionRenamer",
+    "AssemblyVersion": "1.1.0.0",
+    "Punchline": "Sci-fi names and icons for skills, jobs and status effects.",
+    "Description": "Renames skills, traits, job names and buffs/debuffs with a sci-fi theme, lets you set your own names and tooltip descriptions per skill, and installs a matching sci-fi icon pack through Penumbra. Client-side only.",
+    "ApplicableVersion": "any",
+    "RepoUrl": "https://github.com/Dhrubo95ZD/ActionRenamer",
+    "Tags": ["ui", "text", "rename", "icons"],
+    "DalamudApiLevel": 15,
+    "LoadPriority": 0,
+    "IsHide": false,
+    "IsTestingExclusive": false,
+    "DownloadCount": 0,
+    "LastUpdate": 1793308256,
+    "DownloadLinkInstall": "https://github.com/Dhrubo95ZD/ActionRenamer/releases/latest/download/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Dhrubo95ZD/ActionRenamer/releases/latest/download/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Dhrubo95ZD/ActionRenamer/releases/latest/download/latest.zip"
+  }
+]

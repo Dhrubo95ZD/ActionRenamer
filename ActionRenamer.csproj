@@ -1,10 +1,15 @@
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
   <PropertyGroup>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Description>Renames action names and rewrites action descriptions in the game UI.</Description>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Penumbra.Api" Version="5.19.2" />
+    <!-- Icon mod built by tools/IconPack; shipped next to the plugin and installed through Penumbra. -->
+    <None Include="ActionRenamerIcons.pmp" CopyToOutputDirectory="PreserveNewest" Condition="Exists('ActionRenamerIcons.pmp')" />
+  </ItemGroup>
   <ItemGroup>
     <!-- Offline icon tooling has its own project. -->
     <Compile Remove="tools/**" />

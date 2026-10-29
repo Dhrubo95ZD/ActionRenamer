@@ -23,8 +23,10 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static IGameInteropProvider Interop { get; private set; } = null!;
     [PluginService] internal static IDataManager Data { get; private set; } = null!;
     [PluginService] internal static IPluginLog Log { get; private set; } = null!;
+    [PluginService] internal static IFramework Framework { get; private set; } = null!;
 
     public Configuration Config { get; }
+    public IconPackInstaller Icons { get; }
     public RenameEngine Engine { get; }
 
     /// <summary>Every distinct status effect name in the game, sorted.</summary>
@@ -100,6 +102,8 @@ public sealed class Plugin : IDalamudPlugin
         tooltipRewriter = new TooltipRewriter(AddonLifecycle, GameGui, Log, Config);
         messageRewriter = new MessageRewriter(ChatGui, FlyTextGui, Config, () => Engine);
 
+        Icons = new IconPackInstaller(PluginInterface, Framework, ChatGui, Log, Config, () => PluginInterface.SavePluginConfig(Config));
+
         configWindow = new ConfigWindow(this, Data);
         windows.AddWindow(configWindow);
 
@@ -129,6 +133,7 @@ public sealed class Plugin : IDalamudPlugin
         PluginInterface.UiBuilder.OpenMainUi -= configWindow.Toggle;
         CommandManager.RemoveHandler(Command);
         windows.RemoveAllWindows();
+        Icons.Dispose();
         messageRewriter.Dispose();
         tooltipRewriter.Dispose();
         addonRewriter.Dispose();

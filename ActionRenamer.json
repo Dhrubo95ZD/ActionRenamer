@@ -1,7 +1,8 @@
 {
-  "Author": "you",
+  "Author": "Dhrubo95ZD",
   "Name": "Action Renamer",
-  "Punchline": "Rename actions and reword their descriptions.",
-  "Description": "Client-side text replacement for action names, tooltips, cast bars, flytext and the chat log. Ships with a preset that rewords magic terms as technology.",
-  "Tags": [ "ui", "text", "rename" ]
+  "Punchline": "Sci-fi names and icons for skills, jobs and status effects.",
+  "Description": "Renames skills, traits, job names and buffs/debuffs with a sci-fi theme, lets you set your own names and tooltip descriptions per skill, and installs a matching sci-fi icon pack through Penumbra. Client-side only.",
+  "RepoUrl": "https://github.com/Dhrubo95ZD/ActionRenamer",
+  "Tags": [ "ui", "text", "rename", "icons" ]
 }
