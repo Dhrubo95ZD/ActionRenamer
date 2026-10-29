@@ -1,0 +1,7 @@
+{
+  "Author": "you",
+  "Name": "Action Renamer",
+  "Punchline": "Rename actions and reword their descriptions.",
+  "Description": "Client-side text replacement for action names, tooltips, cast bars, flytext and the chat log. Ships with a preset that rewords magic terms as technology.",
+  "Tags": [ "ui", "text", "rename" ]
+}
