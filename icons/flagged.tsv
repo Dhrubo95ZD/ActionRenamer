@@ -297,3 +297,389 @@
 9769	RELIGIOUS	large red eye symbol	A:Impalement
 61276	MAGIC	hooded figure with glowing sigil circle	A:Collector's Stellar Standard
 61277	MAGIC	hand holding glowing orb, crystal ball	A:Material Miracle
+101	CROSS		G:Auto-attack
+103	CROSS		G:Limit Break
+109	CROSS		G:Materia Extraction
+111	CROSS		G:Teleport
+112	CROSS		G:Return
+115	CROSS		G:Decipher
+119	CROSS		G:Cast Glamour
+125	CROSS		G:Glamour Plate
+138	CROSS		G:Plus Target
+151	CROSS		A:Sentinel
+156	CROSS		A:Riot Blade
+259	CROSS		A:Berserk
+266	CROSS		A:Holmgang
+310	CROSS		A:True Thrust
+352	CROSS		A:Raging Strikes
+357	CROSS		A:Wide Volley
+358	CROSS		A:Heavy Shot
+360	CROSS		A:Quick Nock
+452	CROSS		A:Fire II
+454	CROSS		A:Blizzard
+456	CROSS		A:Blizzard III
+463	CROSS		A:Manaward
+518	CROSS		A:Physick / A:Physick
+612	CROSS		A:Assassinate
+620	CROSS		A:Kunai's Bane
+830	CROSS		A:True North
+842	CROSS		A:Foot Graze
+843	CROSS		A:Leg Graze
+884	CROSS		A:Esuna
+1002	CROSS		A:Lay of the Land
+1003	CROSS		A:Lay of the Land II
+1020	CROSS		A:Clear Vision
+1021	CROSS		A:Bountiful Yield
+1029	CROSS		A:Luck of the Mountaineer
+1035	CROSS		A:Bountiful Yield II
+1039	CROSS		A:The Giving Land
+1043	CROSS		A:the Twelve's Bounty
+1052	CROSS		A:Arbor Call
+1053	CROSS		A:Arbor Call II
+1070	CROSS		A:Flora Mastery
+1071	CROSS		A:Bountiful Harvest
+1079	CROSS		A:Luck of the Pioneer
+1085	CROSS		A:Bountiful Harvest II
+1089	CROSS		A:The Giving Land
+1093	CROSS		A:the Twelve's Bounty
+1126	CROSS		A:Shark Eye
+1127	CROSS		A:Shark Eye II
+1137	CROSS		A:Prize Catch
+1502	CROSS		C:Basic Touch
+1503	CROSS		C:Delicate Synthesis
+1514	CROSS		C:Intensive Synthesis
+1516	CROSS		C:Standard Touch
+1519	CROSS		C:Advanced Touch
+1524	CROSS		C:Precise Touch
+1552	CROSS		C:Basic Touch
+1564	CROSS		C:Intensive Synthesis
+1566	CROSS		C:Standard Touch
+1569	CROSS		C:Advanced Touch
+1574	CROSS		C:Precise Touch
+1602	CROSS		C:Basic Touch
+1603	CROSS		C:Delicate Synthesis
+1616	CROSS		C:Standard Touch
+1620	CROSS		C:Advanced Touch
+1625	CROSS		C:Precise Touch
+1652	CROSS		C:Basic Touch
+1663	CROSS		C:Intensive Synthesis
+1665	CROSS		C:Standard Touch
+1669	CROSS		C:Advanced Touch
+1676	CROSS		C:Precise Touch
+1702	CROSS		C:Basic Touch
+1714	CROSS		C:Intensive Synthesis
+1716	CROSS		C:Standard Touch
+1719	CROSS		C:Advanced Touch
+1724	CROSS		C:Precise Touch
+1752	CROSS		C:Basic Touch
+1753	CROSS		C:Delicate Synthesis
+1763	CROSS		C:Intensive Synthesis
+1765	CROSS		C:Standard Touch
+1769	CROSS		C:Advanced Touch
+1772	CROSS		C:Refined Touch
+1774	CROSS		C:Precise Touch
+1802	CROSS		C:Basic Touch
+1816	CROSS		C:Standard Touch
+1820	CROSS		C:Advanced Touch
+1825	CROSS		C:Precise Touch
+1852	CROSS		C:Basic Touch
+1863	CROSS		C:Intensive Synthesis
+1865	CROSS		C:Standard Touch
+1869	CROSS		C:Advanced Touch
+1875	CROSS		C:Precise Touch
+1901	CROSS		A:Scour / A:Scour
+1902	CROSS		A:Brazen Prospector / A:Brazen Woodsman
+1904	CROSS		A:Scrutiny / A:Scrutiny
+1950	CROSS		C:Immaculate Mend / C:Immaculate Mend / C:Immaculate Mend
+1987	CROSS		A:Innovation / A:Innovation / A:Innovation
+1995	CROSS		A:Veneration / A:Veneration / A:Veneration
+1998	CROSS		C:Daring Touch / C:Daring Touch / C:Daring Touch
+1999	CROSS		C:Quick Innovation / C:Quick Innovation / C:Quick Innovation
+2075	CROSS		A:Rise of the Dragon
+2125	CROSS		A:Aetherial Shift
+2126	CROSS		A:Glare IV
+2509	CROSS		A:Clemency
+2516	CROSS		A:Prominence
+2518	CROSS		A:Confiteor
+2559	CROSS		A:Raw Intuition
+2565	CROSS		A:Mythril Tempest
+2571	CROSS		A:Primal Rend
+2606	CROSS		A:Empyreal Arrow
+2611	CROSS		A:Pitch Perfect
+2627	CROSS		A:Benediction
+2628	CROSS		A:Regen
+2629	CROSS		A:Holy
+2632	CROSS		A:Asylum
+2633	CROSS		A:Tetragrammaton
+2636	CROSS		A:Thin Air
+2638	CROSS		A:Divine Benison
+2640	CROSS		A:Afflatus Solace
+2642	CROSS		A:Glare
+2643	CROSS		A:Afflatus Rapture
+2644	CROSS		A:Afflatus Misery
+2647	CROSS		A:Holy III
+2651	CROSS		A:Manafont
+2652	CROSS		A:Flare
+2666	CROSS		A:Umbral Soul
+2670	CROSS		A:High Blizzard II
+2686	CROSS		A:Ruin IV
+2699	CROSS		A:Necrotize
+2750	CROSS		A:Radiant Aegis
+2759	CROSS		A:Astral Flow
+2763	CROSS		A:Tri-disaster
+2775	CROSS		A:Radiant Aegis
+2778	CROSS		A:Precious Brilliance
+2780	CROSS		A:Searing Light
+2781	CROSS		A:Searing Flash
+2801	CROSS		A:Adloquium
+2807	CROSS		A:Broil
+2810	CROSS		A:Dissipation
+2815	CROSS		A:Chain Stratagem
+2816	CROSS		A:Aetherpact
+2819	CROSS		A:Art of War
+2876	CROSS		A:Art of War II
+2877	CROSS		A:Protraction
+2880	CROSS		A:Concitation
+2921	CROSS		A:Bhavacakra
+3004	CROSS		A:Clean Shot
+3011	CROSS		A:Dismantle
+3022	CROSS		A:Reassemble
+3034	CROSS		A:Barrel Stabilizer
+3040	CROSS		A:Tactician
+3045	CROSS		A:Air Anchor
+3054	CROSS		A:Syphon Strike
+3055	CROSS		A:Souleater
+3058	CROSS		A:Carve and Spit
+3063	CROSS		A:Unleash
+3064	CROSS		A:Abyssal Drain
+3071	CROSS		A:Blood Weapon
+3079	CROSS		A:Quietus
+3089	CROSS		A:Oblation
+3120	CROSS		A:Malefic
+3122	CROSS		A:Malefic II
+3129	CROSS		A:Helios
+3130	CROSS		A:Aspected Helios / A:Aspected Helios
+3132	CROSS		A:Ascend
+3140	CROSS		A:Collective Unconscious
+3141	CROSS		A:Essential Dignity
+3143	CROSS		A:Earthly Star
+3145	CROSS		A:Malefic III
+3151	CROSS		A:Hakaze
+3156	CROSS		A:Shifu
+3159	CROSS		A:Iaijutsu
+3164	CROSS		A:Kasha
+3166	CROSS		A:Yukikaze
+3178	CROSS		A:Hissatsu: Senei
+3184	CROSS		A:Shoha
+3189	CROSS		A:Fuko
+3192	CROSS		A:Zanshin
+3209	CROSS		A:Verstone
+3211	CROSS		A:Displacement
+3218	CROSS		A:Embolden
+3220	CROSS		A:Jolt II
+3233	CROSS		A:Reprise
+3235	CROSS		A:Verthunder III
+3237	CROSS		A:Magick Barrier
+3242	CROSS		A:Vice of Thorns
+3244	CROSS		A:Prefulgence
+3274	CROSS		A:White Wind
+3275	CROSS		A:Final Sting
+3292	CROSS		A:Diamondback
+3305	CROSS		A:Abyssal Transfixion
+3307	CROSS		A:Eerie Soundwave
+3308	CROSS		A:Pom Cure
+3310	CROSS		A:Magic Hammer
+3318	CROSS		A:Launcher
+3339	CROSS		A:Angel's Snack
+3358	CROSS		A:Goblin Punch
+3363	CROSS		A:Wild Rage
+3404	CROSS		A:Camouflage
+3405	CROSS		A:Demon Slice
+3407	CROSS		A:Lightning Shot
+3413	CROSS		A:Demon Slaughter
+3415	CROSS		A:Aurora
+3417	CROSS		A:Sonic Break
+3425	CROSS		A:Heart of Stone
+3428	CROSS		A:Bloodfest
+3465	CROSS		A:Bloodshower
+3469	CROSS		A:Shield Samba
+3470	CROSS		A:Closed Position
+3476	CROSS		A:Saber Dance
+3482	CROSS		A:Starfall Dance
+3559	CROSS		A:Fall Malefic
+3630	CROSS		A:Hell's Egress
+3651	CROSS		A:Dosis
+3652	CROSS		A:Diagnosis
+3654	CROSS		A:Prognosis
+3656	CROSS		A:Physis
+3679	CROSS		A:Panhaima
+3681	CROSS		A:Phlegma III
+3684	CROSS		A:Toxikon II
+3701	CROSS		A:Steel Fangs
+3702	CROSS		A:Reaving Fangs
+3710	CROSS		A:Reaving Maw
+3718	CROSS		A:Vicepit
+3744	CROSS		A:Twinfang
+3745	CROSS		A:Twinblood
+3838	CROSS		A:Rainbow Drip
+3930	CROSS		A:Quelling Wave
+3935	CROSS		A:Rally
+5205	CROSS		T:Enhanced Fight or Flight
+5211	CROSS		T:Oath Mastery
+5212	CROSS		T:Chivalry
+5224	CROSS		T:Enhanced Blade of Valor
+5267	CROSS		T:Raw Intuition Mastery
+5303	CROSS		T:Increased Action Damage II
+5349	CROSS		T:Enhanced Tetragrammaton
+5392	CROSS		T:Broil Mastery II
+5394	CROSS		T:Broil Mastery
+5395	CROSS		T:Ruin Mastery
+5420	CROSS		T:Adept Assassination
+5429	CROSS		T:Bountiful Yield Mastery
+5434	CROSS		T:Enhanced Twelve's Bounty
+5435	CROSS		T:Enhanced Twelve's Bounty II
+5440	CROSS		T:Enhanced Twelve's Bounty III
+5447	CROSS		T:Collector's High Standard
+5459	CROSS		T:Enhanced Twelve's Bounty
+5460	CROSS		T:Enhanced Twelve's Bounty II
+5465	CROSS		T:Enhanced Twelve's Bounty III
+5472	CROSS		T:Collector's High Standard
+5687	CROSS		T:Ruin Mastery II
+5688	CROSS		T:Ruin Mastery III
+5689	CROSS		T:Ruin Mastery IV
+5694	CROSS		T:Enhanced Radiant Aegis
+5702	CROSS		T:Broil Mastery III
+5704	CROSS		T:Broil Mastery IV
+5707	CROSS		T:Enhanced Chain Stratagem
+6012	CROSS		T:Clean Shot Mastery
+6013	CROSS		T:Charged Action Mastery
+6018	CROSS		T:Enhanced Reassemble
+6064	CROSS		T:Enhanced Unmend
+6068	CROSS		T:Shadow Wall Mastery
+6105	CROSS		T:Enhanced Benefic
+6110	CROSS		T:Malefic Mastery
+6113	CROSS		T:Malefic Mastery III
+6117	CROSS		T:Malefic Mastery IV
+6123	CROSS		T:Enhanced Neutral Sect
+6153	CROSS		T:Enhanced Iaijutsu
+6154	CROSS		T:Enhanced Fugetsu and Fuka
+6161	CROSS		T:Enhanced Hissatsu
+6203	CROSS		T:Dualcast
+6204	CROSS		T:Enhanced Displacement
+6455	CROSS		T:Offensive Magic Mastery
+6457	CROSS		T:Offensive Magic Mastery II
+6459	CROSS		T:Physis Mastery
+6609	CROSS		T:Enhanced Rally
+6612	CROSS		T:Enhanced Rallying Cheer
+6826	CROSS		T:Enhanced Healing Magic / T:Enhanced Healing Magic / T:Enhanced Healing Magic
+9051	CROSS		A:Elemental Weave
+9058	CROSS		A:PvP Role Action
+9068	CROSS		A:Seraphism
+9284	CROSS		A:Chain Stratagem
+9586	CROSS		A:Phalanx
+9603	CROSS		A:Relentless Rush
+9610	CROSS		A:Afflatus Purgation
+9625	CROSS		A:Powerful Shot
+9629	CROSS		A:Final Fantasia
+9636	CROSS		A:Marksman's Spite
+9641	CROSS		A:Contradance
+9646	CROSS		A:Meteodrive
+9652	CROSS		A:Sky High
+9654	CROSS		A:Fuma Shuriken
+9661	CROSS		A:Seiton Tenchu
+9666	CROSS		A:Zantetsuken
+9673	CROSS		A:Soul Resonance
+9681	CROSS		A:Summon Bahamut
+9683	CROSS		A:Summon Phoenix
+9731	CROSS		A:World-swallower
+9753	CROSS		A:●虹色魔法
+9757	CROSS		A:Advent of Chocobastion
+9065	CROSS		A:Glare IV
+9070	MAGIC		A:Retrograde
+9071	MAGIC		A:Oracle
+9079	RELIGIOUS		A:Accession
+9145	CROSS		A:Syphon Strike
+9146	MAGIC		A:Souleater
+9179	RELIGIOUS		A:Nastrond
+9187	CROSS		A:Assassinate
+9197	CROSS		A:Yukikaze
+9198	ASTROLOGY		A:Gekko
+9199	CROSS		A:Kasha
+9218	CROSS		A:Pitch Perfect
+9242	CROSS		A:Flare
+9329	RELIGIOUS		A:Lady of Crowns
+9330	MAGIC		A:Lord of Crowns
+9359	CROSS		A:Abdomen Tear
+9392	MAGIC		A:Air Anchor
+9412	CROSS		A:Everlasting Flight
+9546	CROSS		A:Cross Reaping
+9564	MAGIC		A:Regress
+9604	CROSS		A:Terminal Trigger
+9620	CROSS		A:Microcosmos
+9623	CROSS		A:Toxikon II
+9632	MAGIC		A:Chain Saw
+9650	RELIGIOUS		A:Wyrmwind Thrust
+9653	CROSS		A:Sky Shatter
+9659	MAGIC		A:Doton
+9682	CROSS		A:Megaflare
+9696	CROSS		A:Blizzard III
+9701	CROSS		A:Swiftskin's Sting
+9728	CROSS		A:Backlash
+9729	CROSS		A:Backlash
+9733	CROSS		A:Aero in Green
+9739	MAGIC		A:Comet in Black
+9743	RELIGIOUS		A:Maw Motif
+9748	CROSS		A:Star Prism
+9752	MAGIC		A:Tempera Grassa
+9759	CROSS		A:Retribution of the Madeen
+9788	MAGIC		A:Executioner's Guillotine
+9790	MAGIC		A:Fate Sealed
+9793	MUSIC		A:Encore of Light
+9796	MUSIC		A:Detonator
+61261	CROSS		A:Mega Potion
+61271	CROSS		A:Aetheromatic Auger
+61279	CROSS		A:Mega Potion
+64501	CROSS		A:Fuma Shuriken
+64506	CROSS		A:Occult Cure II
+64508	CROSS		A:Occult Blink
+64510	CROSS		A:Occult Holy
+64515	CROSS		A:Occult Flare
+64525	CROSS		A:Occult Cure II
+64534	FEMALE		A:Challenge
+64554	CROSS		A:ちゆ
+64558	ASTROLOGY		A:Predict
+64561	MAGIC		A:Blessing
+64563	MAGIC		A:Recuperation
+64567	CROSS		A:Steal
+64574	MUSIC		A:Weather
+64575	RELIGIOUS		A:Magic Shell
+64576	CROSS		A:Sundering Spellblade
+64577	CROSS		A:Holy Spellblade
+64580	CROSS		A:Defend
+64583	MUSIC		A:Dance
+64585	MUSIC		A:Tempting Tango
+64586	MUSIC		A:Jitterbug
+64587	MUSIC		A:Mystery Waltz
+64588	MUSIC		A:Quickstep
+64599	CROSS		A:Occult Aero III
+64601	MAGIC		A:Wisdom of the Aetherweaver
+64616	RELIGIOUS		A:Featherfoot L
+64619	CROSS		A:Dispel L
+64639	MAGIC		A:Banish L
+64660	CROSS		A:Lost Dispel
+64746	MAGIC		A:Lost Chainspell
+64747	CROSS		A:Lost Assassination
+64770	CROSS		A:Counterstance
+64772	ASTROLOGY		A:Phantom Aim
+64780	MUSIC		A:Mighty March
+64782	MUSIC		A:Romeo's Ballad
+64783	MUSIC		A:Hero's Rime
+64784	MUSIC		A:Battle Bell
+64791	MUSIC		A:Ringing Respite
+64794	CROSS		A:Occult Dispel
+3629	CROSS		A:Hells Ingress
+9667	CROSS		A:Harvest Moon
+3613	CROSS		A:Plentiful Harvest
+3632	MAGIC		A:Arcane Crest
+3633	MAGIC		A:Arcane Circle
+3605	CROSS		A:Nightmare Scythe
