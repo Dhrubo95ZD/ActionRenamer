@@ -26,12 +26,18 @@ public sealed class MessageRewriter : IDisposable
 
     private void OnChatMessage(Dalamud.Game.Chat.IHandleableChatMessage message)
     {
-        if (!config.Enabled || !config.ApplyToChat)
+        if (!config.Enabled || !config.ApplyToChat || IsPlayerChannel((int)message.LogKind))
             return;
         var text = message.Message;
-        if (engine().Apply(text))
+        if (engine().Apply(text, sentences: true))
             message.Message = text;
     }
+
+    /// <summary>Channels where players type (say, party, tells, linkshells, ...). Their words are left alone.</summary>
+    private static bool IsPlayerChannel(int kind) =>
+        kind is >= 10 and <= 30 and not 25 and not 26 // Say..Yell, minus non-player gaps
+        || kind is 32 or 36 or 37 // cross-world party, PvP team, CWLS1
+        || kind is >= 101 and <= 107; // CWLS2-8
 
     private void OnFlyText(
         ref FlyTextKind kind, ref int val1, ref int val2,
@@ -41,8 +47,8 @@ public sealed class MessageRewriter : IDisposable
     {
         if (!config.Enabled || !config.ApplyToFlyText)
             return;
-        engine().Apply(text1);
-        engine().Apply(text2);
+        engine().Apply(text1, sentences: true);
+        engine().Apply(text2, sentences: true);
     }
 
     public void Dispose()

@@ -57,6 +57,15 @@ public class Configuration : IPluginConfiguration
     /// <summary>Write each replacement to dalamud.log (for troubleshooting).</summary>
     public bool LogChanges { get; set; }
 
+    /// <summary>Rename job names and every skill and trait with the built-in sci-fi theme.</summary>
+    public bool SkillThemeEnabled { get; set; } = true;
+
+    /// <summary>Rename all status effects (buffs and debuffs) with the built-in sci-fi theme.</summary>
+    public bool StatusThemeEnabled { get; set; } = true;
+
+    /// <summary>Your own status names: game name -> new name. Wins over the theme; empty value keeps the game name.</summary>
+    public Dictionary<string, string> StatusOverrides { get; set; } = new();
+
     /// <summary>Keyed by action id; traits use <see cref="TraitKey"/>.</summary>
     public Dictionary<uint, ActionOverride> Overrides { get; set; } = new();
 

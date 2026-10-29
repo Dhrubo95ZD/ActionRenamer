@@ -28,6 +28,8 @@ public sealed class ConfigWindow : Window
     private string skillSearch = string.Empty;
     private int jobIndex; // 0 = all jobs
     private bool onlyEdited;
+    private string statusSearch = string.Empty;
+    private bool onlyRenamedStatuses;
 
     public ConfigWindow(Plugin plugin, IDataManager data) : base("Action Renamer###ActionRenamerConfig")
     {
@@ -118,6 +120,11 @@ public sealed class ConfigWindow : Window
                 dirty |= DrawSkills(cfg);
                 ImGui.EndTabItem();
             }
+            if (ImGui.BeginTabItem("Status effects"))
+            {
+                dirty |= DrawStatuses(cfg);
+                ImGui.EndTabItem();
+            }
             if (ImGui.BeginTabItem("Word rules"))
             {
                 dirty |= DrawRules(cfg);
@@ -133,7 +140,8 @@ public sealed class ConfigWindow : Window
     private bool DrawSkills(Configuration cfg)
     {
         var dirty = false;
-        ImGui.TextWrapped("Pick a job, then type a new name and/or description. Empty fields keep the game text. Changes show the next time the game redraws that text (re-hover the skill or reopen the window).");
+        dirty |= Check("Sci-fi theme for job names, skills and traits", () => cfg.SkillThemeEnabled, v => cfg.SkillThemeEnabled = v);
+        ImGui.TextWrapped("Grey text in \"New name\" is the theme name. Type to use your own instead. Empty description keeps the game text. Changes show the next time the game redraws that text (re-hover the skill or reopen the window).");
 
         ImGui.SetNextItemWidth(180);
         if (ImGui.BeginCombo("##job", jobs[jobIndex].Name))
@@ -188,7 +196,7 @@ public sealed class ConfigWindow : Window
 
             ImGui.TableNextColumn();
             ImGui.SetNextItemWidth(-1);
-            changed |= ImGui.InputText("##name", ref name, 64);
+            changed |= ImGui.InputTextWithHint("##name", plugin.SkillThemeName(a.GameName), ref name, 64);
 
             ImGui.TableNextColumn();
             var hasGameText = TooltipRewriter.GameDescriptions.TryGetValue(a.Key, out var gameText);
@@ -221,6 +229,82 @@ public sealed class ConfigWindow : Window
             ImGui.PopID();
         }
         ImGui.EndTable();
+        return dirty;
+    }
+
+    private bool DrawStatuses(Configuration cfg)
+    {
+        var dirty = Check("Sci-fi theme for all buffs and debuffs", () => cfg.StatusThemeEnabled, v => cfg.StatusThemeEnabled = v);
+        ImGui.TextWrapped("Type a name in \"Your name\" to override any status. Leave it empty to use the theme name. \"Game name\" keeps the original.");
+
+        ImGui.SetNextItemWidth(260);
+        ImGui.InputTextWithHint("##statussearch", "Search game or new name...", ref statusSearch, 64);
+        ImGui.SameLine();
+        ImGui.Checkbox("Only renamed", ref onlyRenamedStatuses);
+
+        var flags = ImGuiTableFlags.Borders | ImGuiTableFlags.RowBg | ImGuiTableFlags.ScrollY | ImGuiTableFlags.Resizable;
+        if (!ImGui.BeginTable("statuses", 4, flags, new Vector2(0, ImGui.GetContentRegionAvail().Y)))
+            return dirty;
+
+        ImGui.TableSetupScrollFreeze(0, 1);
+        ImGui.TableSetupColumn("Game name", ImGuiTableColumnFlags.WidthStretch, 1f);
+        ImGui.TableSetupColumn("Shown as", ImGuiTableColumnFlags.WidthStretch, 1f);
+        ImGui.TableSetupColumn("Your name", ImGuiTableColumnFlags.WidthStretch, 1f);
+        ImGui.TableSetupColumn("", ImGuiTableColumnFlags.WidthFixed, 90);
+        ImGui.TableHeadersRow();
+
+        var shown = 0;
+        for (var i = 0; i < plugin.StatusNames.Count && shown < 400; i++)
+        {
+            var name = plugin.StatusNames[i];
+            var display = plugin.StatusDisplayName(name);
+            if (onlyRenamedStatuses && display == name)
+                continue;
+            if (statusSearch.Length > 0
+                && !name.Contains(statusSearch, StringComparison.OrdinalIgnoreCase)
+                && !display.Contains(statusSearch, StringComparison.OrdinalIgnoreCase))
+                continue;
+            shown++;
+
+            ImGui.PushID(i);
+            ImGui.TableNextRow();
+            ImGui.TableNextColumn();
+            ImGui.TextUnformatted(name);
+            ImGui.TableNextColumn();
+            ImGui.TextUnformatted(display);
+
+            ImGui.TableNextColumn();
+            cfg.StatusOverrides.TryGetValue(name, out var custom);
+            var hasOverride = custom != null;
+            custom ??= string.Empty;
+            ImGui.SetNextItemWidth(-1);
+            if (ImGui.InputText("##custom", ref custom, 64))
+            {
+                if (custom.Length == 0) cfg.StatusOverrides.Remove(name);
+                else cfg.StatusOverrides[name] = custom;
+                dirty = true;
+            }
+
+            ImGui.TableNextColumn();
+            if (ImGui.SmallButton("Game name"))
+            {
+                cfg.StatusOverrides[name] = name;
+                dirty = true;
+            }
+            if (hasOverride)
+            {
+                ImGui.SameLine();
+                if (ImGui.SmallButton("X"))
+                {
+                    cfg.StatusOverrides.Remove(name);
+                    dirty = true;
+                }
+            }
+            ImGui.PopID();
+        }
+        ImGui.EndTable();
+        if (shown == 400)
+            ImGui.TextDisabled("Showing the first 400. Search to narrow it down.");
         return dirty;
     }
 

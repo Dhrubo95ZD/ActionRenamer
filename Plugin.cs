@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Dalamud.Game.Command;
 using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
@@ -24,6 +27,50 @@ public sealed class Plugin : IDalamudPlugin
     public Configuration Config { get; }
     public RenameEngine Engine { get; }
 
+    /// <summary>Every distinct status effect name in the game, sorted.</summary>
+    public IReadOnlyList<string> StatusNames { get; }
+
+    /// <summary>Name a status shows with the current settings (custom name, else theme, else game name).</summary>
+    public string StatusDisplayName(string gameName)
+    {
+        if (Config.StatusOverrides.TryGetValue(gameName, out var custom))
+            return string.IsNullOrWhiteSpace(custom) ? gameName : custom;
+        return Config.StatusThemeEnabled ? StatusTheme.Apply(gameName) : gameName;
+    }
+
+    /// <summary>Every distinct skill and trait name in the game.</summary>
+    public IReadOnlyList<string> SkillNames { get; }
+
+    /// <summary>Theme name for a skill or trait (what shows when you leave "New name" empty).</summary>
+    public string SkillThemeName(string gameName) => Config.SkillThemeEnabled ? SkillTheme.Apply(gameName) : gameName;
+
+    private Dictionary<string, string> BuildThemeMap()
+    {
+        var map = new Dictionary<string, string>(StringComparer.Ordinal);
+        if (Config.SkillThemeEnabled)
+        {
+            foreach (var (from, to) in SkillTheme.JobVariants())
+                map.TryAdd(from, to);
+            foreach (var name in SkillNames)
+            {
+                var themed = SkillTheme.Apply(name);
+                if (themed != name)
+                    map.TryAdd(name, themed);
+            }
+        }
+
+        foreach (var name in StatusNames)
+        {
+            // Your own status names win; theme status names only fill gaps the skill theme left.
+            var shown = StatusDisplayName(name);
+            if (shown == name)
+                continue;
+            if (Config.StatusOverrides.ContainsKey(name)) map[name] = shown;
+            else map.TryAdd(name, shown);
+        }
+        return map;
+    }
+
     private readonly WindowSystem windows = new("ActionRenamer");
     private readonly ConfigWindow configWindow;
     private readonly TextNodeHook textHook;
@@ -34,7 +81,18 @@ public sealed class Plugin : IDalamudPlugin
     public Plugin()
     {
         Config = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
-        Engine = new RenameEngine(Config);
+        StatusNames = Data.GetExcelSheet<Lumina.Excel.Sheets.Status>()
+            .Select(s => s.Name.ExtractText())
+            .Where(n => n.Length > 0)
+            .Distinct()
+            .OrderBy(n => n, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        SkillNames = Data.GetExcelSheet<Lumina.Excel.Sheets.Action>().Select(a => a.Name.ExtractText())
+            .Concat(Data.GetExcelSheet<Lumina.Excel.Sheets.Trait>().Select(t => t.Name.ExtractText()))
+            .Where(n => n.Length > 0)
+            .Distinct()
+            .ToList();
+        Engine = new RenameEngine(Config, BuildThemeMap());
 
         textHook = new TextNodeHook(Interop, Log, Config, () => Engine);
         addonRewriter = new AddonTextRewriter(AddonLifecycle, Log, Config, () => Engine);
@@ -58,7 +116,7 @@ public sealed class Plugin : IDalamudPlugin
     public void SaveAndApply()
     {
         PluginInterface.SavePluginConfig(Config);
-        Engine.Rebuild(Config);
+        Engine.Rebuild(Config, BuildThemeMap());
         textHook.ResetCache();
         addonRewriter.ResetCache();
     }
