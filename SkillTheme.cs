@@ -283,6 +283,27 @@ public static class SkillTheme
         // Viper
         ["Ouroboros"] = "Loop Drive",
         ["Reawaken"] = "Reboot",
+        // Crafters
+        ["Byregot's Blessing"] = "Quality Overdrive",
+        ["Byregot's Brow"] = "Quality Boost",
+        ["Byregot's Miracle"] = "Quality Breakthrough",
+        ["Veneration"] = "Progress Boost",
+        ["Heart and Soul"] = "Core Focus",
+        ["Muscle Memory"] = "Muscle Memory",
+        // Gatherers
+        ["Nald'thal's Tidings"] = "Market Scan",
+        ["Nophica's Tidings"] = "Harvest Scan",
+        ["Nymeia's Ward"] = "Cycle Shield",
+        ["Nymeia's Wheel"] = "Cycle Wheel",
+        ["Thaliak's Favor"] = "Data Boost",
+        ["the Twelve's Bounty"] = "the Grid's Bounty",
+        ["Blessed Harvest"] = "Boosted Harvest",
+        ["Blessed Harvest II"] = "Boosted Harvest II",
+        ["Ageless Words"] = "Field Protocol",
+        ["Enhanced Ageless Words"] = "Enhanced Field Protocol",
+        ["Whistle While You Work"] = "Steady Work",
+        ["Hellfishing"] = "Infernofishing",
+        ["Aetherfishing"] = "Energy Fishing",
     };
 
     /// <summary>Extra word swaps used by skills (added to the shared status words).</summary>

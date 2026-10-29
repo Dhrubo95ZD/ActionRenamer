@@ -139,6 +139,11 @@ public static class StatusTheme
         ["Saints"] = "Paragons", ["Angel's"] = "Guardian's", ["Unholy"] = "Corrupt", ["Cursekeeper"] = "Malware Keeper",
         ["Souldeep"] = "Core-Deep", ["Spellforge"] = "Code Forge", ["Spellblade"] = "Tech Blade",
         ["Magick"] = "Tech", ["Magicks"] = "Tech", ["Ensorcelled"] = "Hacked",
+        // The Twelve (in-game gods) -> neutral tech words
+        ["Twelve's"] = "Grid's", ["Byregot's"] = "Forge's", ["Nald'thal's"] = "Market's", ["Nophica's"] = "Harvest",
+        ["Thaliak's"] = "Data", ["Nymeia's"] = "Cycle", ["Halone's"] = "Steel's", ["Menphina's"] = "Moon's",
+        ["Azeyma's"] = "Sun's", ["Rhalgr's"] = "Quake's", ["Oschon's"] = "Ranger's", ["Llymlaen's"] = "Tide's",
+        ["Althyk's"] = "Time's",
         ["Spiritbond"] = "Gear Sync", ["Spiritbonding"] = "Gear Sync", ["She"] = "He", ["Her"] = "His",
         // Elements
         ["Fire"] = "Thermal", ["Flame"] = "Plasma", ["Flames"] = "Plasma", ["Burning"] = "Overheating", ["Blaze"] = "Plasma Burst",

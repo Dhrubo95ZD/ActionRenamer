@@ -89,6 +89,7 @@ public sealed class Plugin : IDalamudPlugin
             .ToList();
         SkillNames = Data.GetExcelSheet<Lumina.Excel.Sheets.Action>().Select(a => a.Name.ExtractText())
             .Concat(Data.GetExcelSheet<Lumina.Excel.Sheets.Trait>().Select(t => t.Name.ExtractText()))
+            .Concat(Data.GetExcelSheet<Lumina.Excel.Sheets.CraftAction>().Select(c => c.Name.ExtractText()))
             .Where(n => n.Length > 0)
             .Distinct()
             .ToList();

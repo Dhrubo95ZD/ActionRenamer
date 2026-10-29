@@ -1,0 +1,299 @@
+161	CROSS	downward sword in radiance, cross-like	A:Circle of Scorn
+314	CROSS	downward sword glowing, cross silhouette	A:Full Thrust
+213	FEMALE	possible long-haired figure in pink light	A:Twin Snakes
+215	MAGIC	open palm emitting energy	A:Arm of the Destroyer
+216	MAGIC	open palm emitting blue energy	A:Mantra
+409	MAGIC	ornate glowing sceptre staff	A:Medica II
+462	MAGIC	sparkling wand	A:Scathe
+466	MAGIC	hexagram star lines over figure	A:Transpose
+467	MAGIC	robed lightning caster	A:Aetherial Manipulation
+501	MAGIC	glowing open spellbook	A:Ruin / A:Ruin
+502	MAGIC	glowing open spellbook, red burst	A:Ruin II / A:Ruin II
+865	FEMALE,RELIGIOUS	long-haired pink figure, prayer hands	A:Lucid Dreaming
+866	MAGIC	ornate arcane emblem circle	A:Swiftcast
+869	MAGIC	robed figure over magic circle	A:Surecast
+871	MAGIC	ornate ringed sceptre	A:Sleep
+891	MAGIC	crooked wizard staff	A:Repose
+1926	MAGIC	hands conjuring glowing orb	C:Trained Perfection / C:Trained Perfection / C:Trained Perfection
+1954	MAGIC	man face over glowing orb	C:Observe / C:Observe / C:Observe
+1955	RELIGIOUS	bald meditating figure, radiance	A:Great Strides / A:Great Strides / A:Great Strides
+1975	RELIGIOUS,MAGIC	glowing hand emblem, hamsa-like	C:Byregot's Blessing / C:Byregot's Blessing / C:Byregot's Blessing
+1990	ASTROLOGY,MAGIC	hand holding glowing crescent moon	C:Tricks of the Trade / C:Tricks of the Trade / C:Tricks of the Trade
+1994	RELIGIOUS	eye-shaped iris ring	C:Muscle Memory / C:Muscle Memory / C:Muscle Memory
+1997	MAGIC,RELIGIOUS	cupped hands with glow, prayer-like	C:Trained Finesse / C:Trained Finesse / C:Trained Finesse
+2100	MUSIC	musical note beside figure	A:Radiant Encore
+2127	MAGIC	sword over glowing magic circle	A:Medica III
+2128	MAGIC	figure in glyph circle	A:Divine Caress
+2150	MAGIC	robed wizard with staff, magic circle	A:Retrace
+2151	RELIGIOUS	glowing halo ring	A:Flare Star
+2501	CROSS	shield with green cross, roses	A:Cover
+2508	MAGIC	raised hands in glowing circle	A:Divine Veil
+2512	MAGIC	robed figure over magic circle	A:Intervention
+2514	MAGIC	six-pointed blade star	A:Holy Spirit
+2515	RELIGIOUS	winged figure, angel-like	A:Passage of Arms
+2517	MAGIC	snowflake glyph mandala sigil	A:Holy Circle
+2524	MAGIC	shield inside rune circle	A:Guardian
+2537	MAGIC	golden glyph mandala ring	A:Riddle of Earth
+2541	MAGIC	orange glyph mandala ring	A:Riddle of Fire
+2549	MAGIC	rosette glyph mandala	A:Earth's Reply
+2551	RELIGIOUS	red horned emblem, demon-like	A:Defiance
+2564	RELIGIOUS	red demonic figure in fire	A:Inner Release
+2589	RELIGIOUS	large red eye symbol	A:Nastrond
+2593	MAGIC	pink rune circle with glyph	A:Stardiver
+2607	MUSIC	musical notes	A:the Wanderer's Minuet
+2609	MUSIC	musical notes with figure	A:the Warden's Paean
+2612	MUSIC	musical note in green ring	A:Troubadour
+2615	MUSIC	green figure with musical notes	A:Nature's Minne
+2616	MAGIC	glowing rune circle	A:Refulgent Arrow
+2622	MUSIC	figure with instrument and notes	A:Radiant Finale
+2634	MAGIC	robed figure raising staff in circle	A:Assize
+2639	MAGIC	glyph ring magic circle	A:Plenary Indulgence
+2641	MAGIC	rune magic circle	A:Dia
+2645	RELIGIOUS,FEMALE	winged fairy figure with wand	A:Temperance
+2646	MAGIC	caster with staff and wand	A:Glare III
+2649	MAGIC	ornate glyph heart sigil	A:Liturgy of the Bell
+2656	MAGIC,FEMALE	witch hat silhouette	A:Ley Lines
+2661	MAGIC,FEMALE	witch with staff over orbs	A:Between the Lines
+2663	MAGIC	magic circle with orbs	A:Triplecast
+2664	RELIGIOUS	eye-shaped symbol at center	A:Foul
+2671	MAGIC,FEMALE	witch hat figure with staff	A:Amplifier
+2681	MAGIC	hexagram magic circle behind caster	A:Painflare
+2682	MAGIC	robed caster with spellbook	A:Ruin III
+2684	RELIGIOUS	horned demon shape behind figure	A:Dreadwyrm Trance
+2698	MAGIC,RELIGIOUS	occult glowing triangle emblem	A:Outburst
+2703	RELIGIOUS	skull-like shape	A:Earthen Ward
+2773	RELIGIOUS	horned golden demon/idol figure	A:Summon Titan II
+2774	RELIGIOUS	horned winged demon silhouette	A:Summon Garuda II
+2777	MAGIC	glyph circles around hammer	A:Gemshine
+2812	FEMALE	fairy silhouette	A:Fey Wind
+2818	FEMALE,RELIGIOUS	winged fairy silhouette	A:Fey Union
+2821	MAGIC	rune magic circle	A:Broil III
+2823	FEMALE,RELIGIOUS	glowing winged fairy	A:Summon Eos
+2826	FEMALE	fairy silhouette	A:Embrace
+2827	FEMALE	fairy silhouettes	A:Whispering Dawn
+2828	FEMALE	fairy silhouette	A:Fey Covenant
+2829	FEMALE	fairy silhouettes	A:Fey Illumination
+2836	FEMALE	fairy silhouette	A:Embrace
+2837	FEMALE	fairy silhouette	A:Silent Dusk
+2838	FEMALE	dancing fairy	A:Fey Glow
+2839	FEMALE	dancing fairy	A:Fey Light
+2846	FEMALE	fairy silhouettes	A:Consolation
+2847	RELIGIOUS	winged angel figure	A:Seraphic Veil
+2848	RELIGIOUS,FEMALE	angel and fairy	A:Angel's Whisper
+2849	FEMALE	fairy silhouettes	A:Seraphic Illumination
+2850	RELIGIOUS	winged angel figure	A:Summon Seraph
+2851	FEMALE	fairy silhouette	A:Consolation
+2852	FEMALE	fairy silhouette	A:Whispering Dawn
+2853	FEMALE	fairy silhouette	A:Fey Illumination
+2854	FEMALE	fairy with butterfly	A:Fey Blessing
+2855	FEMALE	fairy silhouettes	A:Fey Blessing
+2875	MAGIC	hands holding glyph orbs	A:Broil IV
+2879	MAGIC	floating magic circles	A:Baneful Impaction
+2881	RELIGIOUS	winged angel figures	A:Seraphism
+2901	RELIGIOUS,MAGIC	sacred script glyph	A:Ten
+2902	RELIGIOUS,MAGIC	sacred script glyph	A:Chi
+2903	RELIGIOUS,MAGIC	sacred script glyph	A:Jin
+2904	RELIGIOUS	meditating figure, halo, prayer hands	A:Ninjutsu
+2906	MAGIC	mandala sigil	A:Kassatsu
+2922	MAGIC	figure on magic sigil square	A:Ten Chi Jin
+2923	MAGIC	octagram magic circle	A:Hakke Mujinsatsu
+2978	MAGIC	pentagon magic circle	A:Riddle of Wind
+3017	ASTROLOGY	constellation star chart	A:Ricochet
+3048	MAGIC	red summoning circle	A:Chain Saw
+3062	MAGIC	star glyph sigil	A:Unmend
+3066	MAGIC	crystal ball orb	A:Salted Earth
+3075	MAGIC	triangular glyph sigil	A:Shadow Wall
+3087	RELIGIOUS	praying figure under ornate arch	A:Dark Missionary
+3094	MAGIC	glyph sigil in temple	A:Shadowed Vigil
+3099	RELIGIOUS	dark winged demon figure	A:Disesteem
+3107	ASTROLOGY	tarot cards	A:Sleeve Draw
+3109	RELIGIOUS,ASTROLOGY	praying figure among stars	A:Sun Sign
+3110	ASTROLOGY	tarot cards with sun orb	A:the Balance / A:the Balance / A:the Balance
+3111	ASTROLOGY	tarot cards with orb	A:the Bole / A:the Bole / A:the Bole
+3112	ASTROLOGY	tarot cards with orb	A:the Arrow / A:the Arrow / A:the Arrow
+3113	ASTROLOGY	tarot cards with orb	A:the Spear / A:the Spear / A:the Spear
+3114	ASTROLOGY	tarot cards with orb	A:the Ewer / A:the Ewer / A:the Ewer
+3115	ASTROLOGY	tarot cards with orb	A:the Spire / A:the Spire / A:the Spire
+3116	ASTROLOGY	tarot cards with orbs	A:Play I
+3117	ASTROLOGY	tarot cards with orbs	A:Play II
+3118	ASTROLOGY	tarot cards with orbs	A:Play III
+3119	ASTROLOGY,RELIGIOUS	tarot cards, winged emblem	A:Minor Arcana
+3126	MAGIC	spell-casting hand with sparkles	A:Benefic
+3127	MAGIC,FEMALE	witch silhouette	A:Aspected Benefic / A:Aspected Benefic
+3128	FEMALE	figure in long dress	A:Benefic II
+3133	MAGIC,FEMALE	witch silhouette	A:Diurnal Sect
+3134	MAGIC,FEMALE	witch silhouette	A:Nocturnal Sect
+3135	ASTROLOGY	engraved astrolabe dial	A:Lightspeed
+3142	FEMALE	dancing figure in dress	A:Celestial Opposition
+3153	RELIGIOUS	eye symbol below figure	A:Third Eye
+3172	FEMALE	figure in flared dress	A:Meditate
+3176	FEMALE	figure in flared dress	A:Hagakure
+3214	RELIGIOUS,CROSS	winged ornate cross-like crest	A:Acceleration
+3229	MAGIC	glyph wheels	A:Verthunder II
+3230	MAGIC	magic circle	A:Veraero II
+3241	MAGIC	robed wizard with staff	A:Jolt III
+3252	RELIGIOUS	bag with face, eye symbols	A:4-tonze Weight
+3254	MUSIC	musical notes	A:Song of Torment
+3255	MAGIC	cauldron	A:High Voltage
+3258	RELIGIOUS	eye symbols above bubbles	A:Aqua Breath
+3267	RELIGIOUS	demon face with glowing eyes	A:the Look
+3272	RELIGIOUS	large eye symbol	A:Glower
+3276	ASTROLOGY	sun with face	A:Self-destruct
+3283	MUSIC	glowing-eyed figure with music notes	A:Moon Flute
+3284	RELIGIOUS	ghost face behind figure	A:Doom
+3314	RELIGIOUS	demon with red eyes	A:Whistle
+3317	RELIGIOUS	horned demon face red eyes	A:Level 5 Death
+3328	RELIGIOUS	demon with red eyes	A:Surpanakha
+3329	RELIGIOUS	golden idol/deity statue	A:Quasar
+3336	RELIGIOUS	radiant figure with halo	A:Stotram / A:Stotram
+3337	RELIGIOUS	temple dome	A:Saintly Beam
+3340	RELIGIOUS	bearded god-like face	A:Chelonian Gate
+3347	MAGIC,FEMALE	long-haired figure with staff, moon	A:Dragon Force
+3354	FEMALE	dancer in dress	A:Both Ends
+3357	RELIGIOUS,FEMALE	crowned goddess-like figure	A:Nightbloom
+3367	FEMALE	robed goddess-like figure	A:Divination Rune
+3369	RELIGIOUS	golden winged angel figure	A:Conviction Marcato
+3374	RELIGIOUS	red demon with eyes	A:Mortal Flame
+3376	RELIGIOUS	row of skull-like heads	A:Apokalypsis
+3406	RELIGIOUS	ornate tribal mask emblem	A:Royal Guard
+3454	FEMALE	female foot with anklets	A:Standard Step
+3461	FEMALE	long-haired figure in dress	A:Bladeshower
+3462	RELIGIOUS	eye motifs	A:Fan Dance
+3464	FEMALE	female silhouette	A:Fountainfall
+3466	RELIGIOUS	eye motif	A:Fan Dance II
+3473	FEMALE	dancer with hoop	A:Technical Step
+3477	RELIGIOUS	multi-armed deity figure	A:Improvisation
+3481	RELIGIOUS	white dove with radiant wings	A:Fan Dance IV
+3483	RELIGIOUS	figure arms spread in radiant light, crucifix-like	A:Last Dance
+3501	CROSS	figure framed by glowing cross shape	A:Automaton Queen
+3507	MAGIC	ornate circular knot sigil emblem	A:Double Check
+3508	MAGIC	linked glowing circles glyph pattern	A:Checkmate
+3550	MAGIC	gold ring of glyphs and hands	A:Horoscope
+3552	ASTROLOGY,RELIGIOUS	hooded figure with crescent and star	A:Neutral Sect
+3553	MAGIC	figure inside orbiting glyph rings	A:Divination
+3554	MAGIC	glowing rune circle orb	A:Combust III
+3561	ASTROLOGY,RELIGIOUS	crescent moon emblem on pedestal	A:Exaltation
+3562	RELIGIOUS	figure with radiant halo ring behind	A:Macrocosmos
+3563	MAGIC	figure in glyph swirls	A:Microcosmos
+3566	MAGIC	floating rune glyph symbols	A:Oracle
+3567	MAGIC	golden starburst rune sigil	A:Helios Conjunction
+3606	MAGIC	eight-point star in circle sigil	A:Shadow of Death
+3607	MAGIC	glowing magic circle portal	A:Whorl of Death
+3614	MAGIC	hand casting energy with circle	A:Harpe
+3617	RELIGIOUS	antlered horned demonic beast	A:Blood Stalk
+3620	RELIGIOUS	white hooded ghost-like figure	A:Grim Swathe
+3622	RELIGIOUS	hooded demon figure with eyes	A:Enshroud
+3626	RELIGIOUS	dark demonic figure in red	A:Communio
+3670	RELIGIOUS	figure with halo-like radiant arc	A:Physis II
+3671	MAGIC	diamond sigil with glyph	A:Taurochole
+3675	MAGIC	glowing glyph orb	A:Phlegma II
+3715	ASTROLOGY	crescent moon behind sword figure	A:Vicewinder
+3742	MAGIC	serpent coiled in gold sigil ring	A:Serpent's Ire
+3839	ASTROLOGY	tarot-like card with bat drawing	A:Creature Motif
+3840	ASTROLOGY	tarot-like card with sword drawing	A:Weapon Motif
+3841	ASTROLOGY	tarot-like card with creature drawing	A:Landscape Motif
+3911	MAGIC	purple compass-star sigil circle	A:Hawkish Talons
+3913	MAGIC	purple spiked star sigil circle	A:Calamity
+3915	RELIGIOUS	horned beast face, demonic	A:Borrow
+3927	FEMALE	robed figure appears in dress	A:Beastskin
+3932	RELIGIOUS	red demon face	A:Soul Crush
+3934	RELIGIOUS	purple demon face emblem	A:Rallying Cheer
+3940	MAGIC	purple magic circle	A:Gauge
+3941	MUSIC	war horn instrument I	A:First Battlehorn
+3942	MUSIC	war horn instrument II	A:Second Battlehorn
+3943	MUSIC	war horn instrument III	A:Third Battlehorn
+3944	RELIGIOUS	demonic cat face	A:Beast Mode
+5219	MAGIC	eye-like glowing orb sigil	T:Enhanced Intervention
+5220	MAGIC	white starburst sigil	T:Divine Magic Mastery II
+5222	RELIGIOUS	golden halo ring above hand	T:Enhanced Divine Veil
+5289	RELIGIOUS	black horned demon-like head	T:Life of the Dragon
+5315	MUSIC	golden music notes	T:Soul Voice
+5319	MUSIC	music note in green ring	T:Enhanced Troubadour
+5320	MAGIC	red glowing rune glyphs	T:Minstrel's Coda
+5321	RELIGIOUS	winged angel-like figure in light	T:Heavier Shot
+5324	MUSIC	music note in green ring	T:Enhanced Troubadour II
+5348	RELIGIOUS	winged angel-like figure	T:Enhanced Temperance
+5369	RELIGIOUS	radiant eye symbol	T:Enhanced Foul
+5371	MAGIC	figure inside glowing circle	T:Enhanced Manafont
+5380	RELIGIOUS	red horned demon silhouette	T:Enhanced Dreadwyrm Trance
+5396	MAGIC	figure holding glowing spellbook	T:Enhanced Aethercharge
+5397	MAGIC	figure holding glowing spellbook	T:Enhanced Aethercharge II
+5414	MAGIC	pink mandala sigil	T:Enhanced Kassatsu
+5436	ASTROLOGY	astrolabe-like ring device	T:Nymeia's Ward
+5454	RELIGIOUS	dark pyramid with radiant star	T:Bountiful Harvest Mastery
+5461	ASTROLOGY	astrolabe-like ring device	T:Nymeia's Ward
+5526	MAGIC	orange mandala circle sigil	T:Enhanced Riddle of Wind
+5527	MAGIC	red glowing circle sigil	T:Enhanced Riddle of Fire
+5601	MUSIC	figure with music notes	T:Enhanced Radiant Finale
+5652	MAGIC,FEMALE	witch-hat figure silhouette	T:Enhanced Ley Lines
+5654	MAGIC	ornate orange circle sigil	T:Enhanced Astral Fire
+5690	MAGIC	figure with glowing book glyphs	T:Aethercharge Mastery
+5692	RELIGIOUS	red pyramid with star emblem	T:Outburst Mastery
+5693	RELIGIOUS	red pyramid with star emblem	T:Outburst Mastery II
+5696	RELIGIOUS	horned dark helmet head	T:Enhanced Summon Bahamut
+5698	RELIGIOUS	horned dark helmet head	T:Enhanced Summon Bahamut II
+6020	RELIGIOUS	figure inside golden arched shrine-like frame	T:Enhanced Tactician
+6025	RELIGIOUS	figure inside golden arched shrine-like frame	T:Enhanced Tactician II
+6066	MAGIC,RELIGIOUS	glowing triangle sigil, possible eye symbol	T:Enhanced Living Shadow II
+6069	RELIGIOUS	red ornate pattern, possible demonic face	T:Enhanced Delirium
+6102	RELIGIOUS	shield emblem figure with red eye	T:Maim and Mend
+6103	RELIGIOUS	shield emblem figure with red eye	T:Maim and Mend II
+6120	RELIGIOUS	paired masks with facial features	T:Minor Arcana Mastery
+6121	MAGIC	golden ringed sphere, arcane glyph rings	T:Enhanced Divination
+6156	MAGIC,ASTROLOGY	crescent moon with glowing sigil orbs	T:Enhanced Meikyo Shisui
+6163	MAGIC,ASTROLOGY	crescent moon with glowing sigil orbs	T:Enhanced Meikyo Shisui II
+6305	RELIGIOUS	meditating figure in radiant halo circle	T:Enhanced Aurora
+6308	RELIGIOUS	golden spire, temple-like silhouette	T:Nebula Mastery
+6359	RELIGIOUS	golden trident/candelabra crown emblem	T:Enhanced Flourish
+6363	RELIGIOUS	golden trident/candelabra crown emblem	T:Enhanced Flourish II
+6360	MAGIC	red star-burst sigil, possible pentagram	T:Enhanced Shield Samba
+6364	MAGIC	red star-burst sigil, possible pentagram	T:Enhanced Shield Samba II
+6403	RELIGIOUS	antlered horned figure, demon-like	T:Enhanced Avatar
+6404	CROSS,MAGIC	four-point glowing cross-star symbol	T:Hellsgate
+6411	RELIGIOUS	dark figures with glowing red eyes	T:Enhanced Enshroud
+6413	RELIGIOUS	dark figure with glowing red eyes	T:Enhanced Gluttony
+6511	RELIGIOUS	winged figure, angel-like pose	T:Enhanced Serpent's Lineage
+6603	MUSIC	horn instrument with cat face	T:Battlehorn Mastery
+6605	MUSIC	horn instrument with cat face	T:Battlehorn Mastery II
+6606	MUSIC	horn instrument with cat face	T:Battlehorn Mastery III
+6613	MAGIC	purple circle with arcane glyph ring	T:Instinctual Mastery
+6829	MAGIC	staff with lightning, wizard staff	T:Pictomancy Mastery
+6830	MAGIC	staff with lightning, wizard staff	T:Pictomancy Mastery II
+6831	MAGIC	staff with lightning, wizard staff	T:White Magic Mastery / T:Enchanted Blade Mastery / T:Tactician's Mastery
+6832	MAGIC	staff with lightning, wizard staff	T:Pictomancy Mastery III
+6833	MAGIC	staff with lightning, wizard staff	T:Pictomancy Mastery IV
+6975	MAGIC	open hand casting glowing energy	T:Expedience / T:Expedience / T:Expedience
+9059	RELIGIOUS	figure radiating light, halo-like glow	A:Necrotize
+9080	RELIGIOUS	winged angel figure	A:Summon Seraph
+9108	RELIGIOUS	cupped hands raised, prayer-like gesture	A:Recuperate
+9112	RELIGIOUS	hands raised toward star, worship pose	A:Purify
+9152	MAGIC	figures inside glowing orb, crystal ball	A:the Blackest Night
+9161	MAGIC	golden mandala ring, arcane circle	A:Riddle of Earth
+9189	MAGIC	pink mandala sigil pattern	A:Three Mudra
+9206	MAGIC,ASTROLOGY	crescent moon with glyph orbs	A:Meikyo Shisui
+9245	MAGIC	robed caster with staff, wizard	A:Aetherial Manipulation
+9327	MUSIC	figure with speakers/amplifiers, performance	A:Minor Arcana
+9363	MAGIC	fiery summoning circle on ground	A:Fated Circle
+9369	FEMALE	possible female figure silhouette	A:Intervene
+9404	MAGIC	purple orb with sigil	A:Xenoglossy
+9420	MAGIC,FEMALE	witch-hat robed figure	A:Aspected Benefic
+9456	RELIGIOUS	ornate banner with bones, occult motif	A:Closed Position
+9565	MAGIC,RELIGIOUS	hex dome with skull-like shape	A:Arcane Crest
+9582	ALCOHOL	green potion flask, possible drink	A:Standard-issue Elixir
+9597	RELIGIOUS,MAGIC	purple candelabra/totem sigil shape	A:Eventide
+9611	MAGIC	figures inside glowing glyph circles	A:Broil IV
+9621	MAGIC	figure inside arcane ring	A:Celestial River
+9624	MAGIC	glowing summoning circle on ground	A:Mesotes
+9627	MUSIC	musical notes around figure	A:Silent Nocturne
+9628	MUSIC	musical notes and stringed instrument	A:the Warden's Paean
+9669	MAGIC	figure with glowing glyph circle	A:Death Warrant
+9670	MAGIC	possible hexagram rune pattern	A:Tenebrae Lemurum
+9676	FEMALE	dancer silhouette, possibly female	A:Crimson Cyclone
+9694	FEMALE	pink figure, possibly female	A:Orogeny
+9727	RELIGIOUS	figure with halo-like glow	A:Snake Scales
+9732	MAGIC	figure in glowing pink sigil circle	A:Fire in Red
+9754	RELIGIOUS	bat wings emblem, demonic motif	A:Creature Motif
+9755	RELIGIOUS	bat wings emblem, demonic motif	A:Living Muse
+9769	RELIGIOUS	large red eye symbol	A:Impalement
+61276	MAGIC	hooded figure with glowing sigil circle	A:Collector's Stellar Standard
+61277	MAGIC	hand holding glowing orb, crystal ball	A:Material Miracle

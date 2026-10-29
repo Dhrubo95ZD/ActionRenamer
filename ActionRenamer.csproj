@@ -5,4 +5,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <!-- Offline icon tooling has its own project. -->
+    <Compile Remove="tools/**" />
+    <None Remove="tools/**" />
+  </ItemGroup>
 </Project>
