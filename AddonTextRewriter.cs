@@ -18,6 +18,7 @@ public sealed unsafe class AddonTextRewriter : IDisposable
     private static readonly string[] Addons =
     {
         "ActionMenu", "ActionMenuReplaceList", "ActionMenuActionSetting", "ActionDetail", "_CastBar", "_TargetInfoCastBar",
+        "ItemDetail", "ArmouryBoard", "Character",
     };
 
     private readonly IAddonLifecycle lifecycle;

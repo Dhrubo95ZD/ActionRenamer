@@ -50,6 +50,8 @@ public sealed class Plugin : IDalamudPlugin
     {
         var map = new Dictionary<string, string>(StringComparer.Ordinal);
         if (Config.SkillThemeEnabled)
+            JobCoreTheme.AddTo(map, Data);
+        if (Config.SkillThemeEnabled)
         {
             foreach (var (from, to) in SkillTheme.JobVariants())
                 map.TryAdd(from, to);
