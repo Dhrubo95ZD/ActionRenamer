@@ -52,7 +52,7 @@ File.WriteAllText(Path.Combine(work, "meta.json"), JsonSerializer.Serialize(new
     Name = "Action Renamer Icons",
     Author = "Action Renamer",
     Description = "Sci-fi replacements for skill and PvP icons with magic circles, crosses, sparkle stars, X shapes and religious or occult symbols.",
-    Version = "1.2.0",
+    Version = "1.2.1",
     Website = "",
     ModTags = Array.Empty<string>(),
 }, new JsonSerializerOptions { WriteIndented = true }));

@@ -87,5 +87,13 @@ sheet("contentsfinder", "ui/uld/ContentsFinder_hr1", [
 sheet("lfgselectrole", "ui/uld/LFGSelectRole_hr1", [((63, 63, 106, 107), True, None, GREEN)])
 sheet("gcarmyexpedition", "ui/uld/GcArmyExpedition_hr1", [((336, 592, 392, 647), True, None, GREEN)])
 
+for theme, prefix in (("", "ui/uld/"), ("img01_", "ui/uld/img01/"), ("img02_", "ui/uld/img02/"), ("img03_", "ui/uld/img03/"), ("img04_", "ui/uld/img04/")):
+    if os.path.exists(os.path.join(SRC, f"{theme}togglebutton.png")):
+        sheet(f"{theme}togglebutton", f"{prefix}ToggleButton_hr1", [((143, 1, 178, 42), False)])  # Character window role headers
+    if os.path.exists(os.path.join(SRC, f"{theme}configcharacterhud.png")):
+        sheet(f"{theme}configcharacterhud", f"{prefix}ConfigCharacterHud_hr1", [((45, 5, 75, 35),)])
+    if os.path.exists(os.path.join(SRC, f"{theme}buddy.png")):
+        sheet(f"{theme}buddy", f"{prefix}Buddy_hr1", [((8, 120, 48, 160),)])
+
 role = Image.open(os.path.join(SRC, "i62582.png")).convert("RGBA")
 paint(role, (9, 8, 55, 56)).save(os.path.join(ICONS, "replacements", "062582.png"))
