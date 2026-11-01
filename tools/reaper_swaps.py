@@ -57,6 +57,16 @@ for line in open(REAPER, encoding="utf-8"):
         sys.exit(f"no donor for flagged effect {path}")
     swaps[path] = donors[SWAPS[name]]
 
+# Effects with no flagged texture that still draw something unwanted (the figure summoned by Blood Stalk).
+EXTRA = {
+    "vfx/rrp/ab_2km001/eff/ab_2km001_c0x.avfx": "abl_2gb003c0i",
+    "vfx/rrp/ab_2km001/eff/ab_2km001_c2x.avfx": "abl_2gb001c1i",
+    "vfx/rrp/ab_2km001/eff/ab_2km001_c3x.avfx": "abl_2gb001c0i",
+    "vfx/rrp/ab_2km001/eff/ab_2km001_t0x.avfx": "abl_2gb003t0i",
+}
+for path, donor in EXTRA.items():
+    swaps[path] = donors[donor]
+
 with open(os.path.join(ICONS, "file_swaps.json"), "w", encoding="utf-8") as f:
     json.dump(dict(sorted(swaps.items())), f, indent=2)
 print(len(swaps), "effect swaps")
