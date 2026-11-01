@@ -46,13 +46,36 @@ if (Directory.Exists(uldDir))
     }
 }
 
+// Effect textures keep their size and game path: <icons>/vfx_replacements/vfx/.../name.atex.png -> vfx/.../name.atex
+var vfxDir = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(pngDir))!, "vfx_replacements");
+var vfxCount = 0;
+if (Directory.Exists(vfxDir))
+{
+    Directory.CreateDirectory(Path.Combine(work, "vfx"));
+    foreach (var png in Directory.GetFiles(vfxDir, "*.png", SearchOption.AllDirectories))
+    {
+        var game = Path.GetRelativePath(vfxDir, png).Replace('\\', '/')[..^4];
+        using var src = Image.Load<Rgba32>(png);
+        var local = Path.Combine("vfx", game.Replace('/', '_'));
+        WriteSheet(src, src.Width, src.Height, Path.Combine(work, local));
+        files[game] = local;
+        vfxCount++;
+    }
+}
+
+// Game file -> other game file, loaded by Penumbra instead (Reaper effects -> other jobs' effects).
+var swapFile = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(pngDir))!, "file_swaps.json");
+var swaps = File.Exists(swapFile)
+    ? JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(swapFile))!
+    : new Dictionary<string, string>();
+
 File.WriteAllText(Path.Combine(work, "meta.json"), JsonSerializer.Serialize(new
 {
     FileVersion = 3,
     Name = "Action Renamer Icons",
     Author = "Action Renamer",
     Description = "Sci-fi replacements for skill and PvP icons with magic circles, crosses, sparkle stars, X shapes and religious or occult symbols.",
-    Version = "1.2.1",
+    Version = "1.3.0",
     Website = "",
     ModTags = Array.Empty<string>(),
 }, new JsonSerializerOptions { WriteIndented = true }));
@@ -61,14 +84,14 @@ File.WriteAllText(Path.Combine(work, "default_mod.json"), JsonSerializer.Seriali
     Name = "",
     Priority = 0,
     Files = files,
-    FileSwaps = new Dictionary<string, string>(),
+    FileSwaps = swaps,
     Manipulations = Array.Empty<object>(),
 }, new JsonSerializerOptions { WriteIndented = true }));
 
 if (File.Exists(outPmp)) File.Delete(outPmp);
 ZipFile.CreateFromDirectory(work, outPmp);
 Directory.Delete(work, true);
-Console.WriteLine($"{files.Count} files, {uldCount} UI sheets -> {outPmp}");
+Console.WriteLine($"{files.Count} files, {uldCount} UI sheets, {vfxCount} effect textures, {swaps.Count} swaps -> {outPmp}");
 
 // Uncompressed B8G8R8A8 .tex with a full mip chain.
 static void WriteTex(Image<Rgba32> src, int size, string path)
