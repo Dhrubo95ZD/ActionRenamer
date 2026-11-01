@@ -63,6 +63,22 @@ if (Directory.Exists(vfxDir))
     }
 }
 
+// Finished game files, copied as they are: <icons>/raw_replacements/<game path>.
+var rawDir = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(pngDir))!, "raw_replacements");
+var rawCount = 0;
+if (Directory.Exists(rawDir))
+{
+    Directory.CreateDirectory(Path.Combine(work, "raw"));
+    foreach (var file in Directory.GetFiles(rawDir, "*", SearchOption.AllDirectories))
+    {
+        var game = Path.GetRelativePath(rawDir, file).Replace('\\', '/');
+        var local = Path.Combine("raw", game.Replace('/', '_'));
+        File.Copy(file, Path.Combine(work, local));
+        files[game] = local;
+        rawCount++;
+    }
+}
+
 // Game file -> other game file, loaded by Penumbra instead (Reaper effects -> other jobs' effects).
 var swapFile = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(pngDir))!, "file_swaps.json");
 var swaps = File.Exists(swapFile)
@@ -75,7 +91,7 @@ File.WriteAllText(Path.Combine(work, "meta.json"), JsonSerializer.Serialize(new
     Name = "Action Renamer Icons",
     Author = "Action Renamer",
     Description = "Sci-fi replacements for skill and PvP icons with magic circles, crosses, sparkle stars, X shapes and religious or occult symbols.",
-    Version = "1.3.1",
+    Version = "1.3.2",
     Website = "",
     ModTags = Array.Empty<string>(),
 }, new JsonSerializerOptions { WriteIndented = true }));
@@ -91,7 +107,7 @@ File.WriteAllText(Path.Combine(work, "default_mod.json"), JsonSerializer.Seriali
 if (File.Exists(outPmp)) File.Delete(outPmp);
 ZipFile.CreateFromDirectory(work, outPmp);
 Directory.Delete(work, true);
-Console.WriteLine($"{files.Count} files, {uldCount} UI sheets, {vfxCount} effect textures, {swaps.Count} swaps -> {outPmp}");
+Console.WriteLine($"{files.Count} files, {uldCount} UI sheets, {vfxCount} effect textures, {swaps.Count} swaps, {rawCount} raw files -> {outPmp}");
 
 // Uncompressed B8G8R8A8 .tex with a full mip chain.
 static void WriteTex(Image<Rgba32> src, int size, string path)

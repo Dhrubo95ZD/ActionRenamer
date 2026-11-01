@@ -4,3 +4,4 @@ obj/
 *.user
 *.pmp
 Action Renamer Icons/
+!icons/raw_replacements/**/obj/
