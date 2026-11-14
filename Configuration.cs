@@ -60,6 +60,21 @@ public class Configuration : IPluginConfiguration
     /// <summary>Install the bundled sci-fi icon mod into Penumbra automatically.</summary>
     public bool AutoInstallIcons { get; set; } = true;
 
+    /// <summary>Press Commence by itself when a duty pops.</summary>
+    public bool AutoCommenceDuty { get; set; } = true;
+
+    /// <summary>Answer Yes to ready checks by itself.</summary>
+    public bool AutoReadyCheck { get; set; } = true;
+
+    /// <summary>Leave a finished duty once the coffers are open and the loot rolls are over.</summary>
+    public bool AutoLeaveDuty { get; set; } = true;
+
+    /// <summary>Leave as soon as your own rolls are in, without waiting for the rest of the party.</summary>
+    public bool AutoLeaveAfterOwnRolls { get; set; }
+
+    /// <summary>Seconds to wait after the loot is done before leaving.</summary>
+    public int AutoLeaveDelaySeconds { get; set; } = 5;
+
     /// <summary>Icon pack version last installed into Penumbra.</summary>
     public string InstalledIconPackVersion { get; set; } = string.Empty;
 

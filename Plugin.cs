@@ -24,10 +24,15 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static IDataManager Data { get; private set; } = null!;
     [PluginService] internal static IPluginLog Log { get; private set; } = null!;
     [PluginService] internal static IFramework Framework { get; private set; } = null!;
+    [PluginService] internal static IDutyState DutyState { get; private set; } = null!;
+    [PluginService] internal static ICondition Condition { get; private set; } = null!;
+    [PluginService] internal static IObjectTable Objects { get; private set; } = null!;
+    [PluginService] internal static IClientState ClientState { get; private set; } = null!;
 
     public Configuration Config { get; }
     public IconPackInstaller Icons { get; }
     public RenameEngine Engine { get; }
+    public DutyAutomation Duty { get; }
 
     /// <summary>Every distinct status effect name in the game, sorted.</summary>
     public IReadOnlyList<string> StatusNames { get; }
@@ -106,17 +111,27 @@ public sealed class Plugin : IDalamudPlugin
 
         Icons = new IconPackInstaller(PluginInterface, Framework, ChatGui, Log, Config, () => PluginInterface.SavePluginConfig(Config));
 
+        Duty = new DutyAutomation(AddonLifecycle, Framework, GameGui, DutyState, Condition, Objects, ClientState, Data, ChatGui, Log, Config);
+
         configWindow = new ConfigWindow(this, Data);
         windows.AddWindow(configWindow);
 
-        CommandManager.AddHandler(Command, new CommandInfo((_, _) => configWindow.Toggle())
+        CommandManager.AddHandler(Command, new CommandInfo(OnCommand)
         {
-            HelpMessage = "Open Action Renamer settings.",
+            HelpMessage = "Open Action Renamer settings. \"/actionrenamer stay\" keeps you in the duty you just finished.",
         });
 
         PluginInterface.UiBuilder.Draw += windows.Draw;
         PluginInterface.UiBuilder.OpenConfigUi += configWindow.Toggle;
         PluginInterface.UiBuilder.OpenMainUi += configWindow.Toggle;
+    }
+
+    private void OnCommand(string command, string arguments)
+    {
+        if (arguments.Trim().Equals("stay", StringComparison.OrdinalIgnoreCase))
+            Duty.StayInThisDuty();
+        else
+            configWindow.Toggle();
     }
 
     /// <summary>Saves settings and applies edits right away. Text already on screen updates when the game redraws it.</summary>
@@ -135,6 +150,7 @@ public sealed class Plugin : IDalamudPlugin
         PluginInterface.UiBuilder.OpenMainUi -= configWindow.Toggle;
         CommandManager.RemoveHandler(Command);
         windows.RemoveAllWindows();
+        Duty.Dispose();
         Icons.Dispose();
         messageRewriter.Dispose();
         tooltipRewriter.Dispose();

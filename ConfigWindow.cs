@@ -137,11 +137,43 @@ public sealed class ConfigWindow : Window
                 dirty |= DrawRules(cfg);
                 ImGui.EndTabItem();
             }
+            if (ImGui.BeginTabItem("Duty"))
+            {
+                DrawDuty(cfg);
+                ImGui.EndTabItem();
+            }
             ImGui.EndTabBar();
         }
 
         if (dirty)
             plugin.SaveAndApply();
+    }
+
+    /// <summary>Duty switches save on their own; they do not need the rename engine rebuilt.</summary>
+    private void DrawDuty(Configuration cfg)
+    {
+        var dirty = false;
+        dirty |= Check("Press Commence when a duty pops", () => cfg.AutoCommenceDuty, v => cfg.AutoCommenceDuty = v);
+        dirty |= Check("Answer Yes to ready checks", () => cfg.AutoReadyCheck, v => cfg.AutoReadyCheck = v);
+
+        ImGui.Separator();
+        dirty |= Check("Leave the duty when it is finished and the loot is done", () => cfg.AutoLeaveDuty, v => cfg.AutoLeaveDuty = v);
+        ImGui.TextWrapped("Waits until the duty is complete, the treasure coffers are opened (two minutes at most), and all loot has been rolled for and handed out. Never leaves in combat or during a cutscene. Duty Finder content only. This plugin does not roll for you.");
+
+        ImGui.BeginDisabled(!cfg.AutoLeaveDuty);
+        dirty |= Check("Leave as soon as my own rolls are in", () => cfg.AutoLeaveAfterOwnRolls, v => cfg.AutoLeaveAfterOwnRolls = v);
+        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Off: wait until every item is handed out. On: do not wait for the rest of the party to roll.");
+        var delay = cfg.AutoLeaveDelaySeconds;
+        ImGui.SetNextItemWidth(160);
+        if (ImGui.SliderInt("Seconds to wait before leaving", ref delay, 1, 60))
+            cfg.AutoLeaveDelaySeconds = delay;
+        dirty |= ImGui.IsItemDeactivatedAfterEdit();
+        ImGui.EndDisabled();
+
+        ImGui.TextDisabled(plugin.Duty.Status);
+        ImGui.TextDisabled("To stay in a finished duty, type /actionrenamer stay.");
+        if (dirty)
+            Plugin.PluginInterface.SavePluginConfig(cfg);
     }
 
     private bool DrawSkills(Configuration cfg)
