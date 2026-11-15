@@ -69,8 +69,10 @@ public sealed unsafe class TextNodeHook : IDisposable
 
     private byte[]? Rewrite(byte* text)
     {
-        var span = new ReadOnlySpan<byte>(text, int.MaxValue);
-        span = span[..span.IndexOf((byte)0)];
+        // Never scan with a made-up length: the vectorised IndexOf reads whole blocks (up to 64 bytes) past the
+        // terminator, and when the game's string ends just before an unmapped page that read crashes the game.
+        // This helper is a real strlen: it only reads aligned blocks, which cannot cross into the next page.
+        var span = System.Runtime.InteropServices.MemoryMarshal.CreateReadOnlySpanFromNullTerminated(text);
         if (span.IsEmpty)
             return null;
 
