@@ -23,6 +23,9 @@ public sealed unsafe class DutyAutomation : IDisposable
     /// <summary>Addon sheet row of the ready check prompt ("A ready check has been commenced. ...").</summary>
     private const uint ReadyCheckPromptRow = 8133;
 
+    /// <summary>Addon sheet row of "Move immediately to sealed area?", asked when a boss arena seals with you outside it.</summary>
+    private const uint SealedAreaPromptRow = 102631;
+
     /// <summary>Wait this long after a window opens before pressing its button, so the window is fully set up.</summary>
     private static readonly TimeSpan ClickDelay = TimeSpan.FromMilliseconds(600);
 
@@ -51,6 +54,9 @@ public sealed unsafe class DutyAutomation : IDisposable
 
     /// <summary>First line of the ready check prompt in the game's language, without whitespace.</summary>
     private readonly string readyCheckPrompt;
+
+    /// <summary>The sealed area question in the game's language, without whitespace.</summary>
+    private readonly string sealedAreaPrompt;
 
     private DateTime? commenceAt;
     private DateTime? readyYesAt;
@@ -85,8 +91,8 @@ public sealed unsafe class DutyAutomation : IDisposable
         this.log = log;
         this.config = config;
 
-        var prompt = data.GetExcelSheet<Lumina.Excel.Sheets.Addon>().GetRowOrDefault(ReadyCheckPromptRow)?.Text.ExtractText() ?? string.Empty;
-        readyCheckPrompt = Squash(prompt.Split('\n', '\r').FirstOrDefault(l => l.Trim().Length > 0) ?? string.Empty);
+        readyCheckPrompt = FirstLine(data, ReadyCheckPromptRow);
+        sealedAreaPrompt = FirstLine(data, SealedAreaPromptRow);
 
         lifecycle.RegisterListener(AddonEvent.PostSetup, "ContentsFinderConfirm", OnDutyPop);
         lifecycle.RegisterListener(AddonEvent.PostSetup, "SelectYesno", OnYesNo);
@@ -116,7 +122,7 @@ public sealed unsafe class DutyAutomation : IDisposable
 
     private void OnYesNo(AddonEvent type, AddonArgs args)
     {
-        if (!config.AutoReadyCheck || readyCheckPrompt.Length < 6)
+        if (!config.AutoReadyCheck && !config.AutoSealedArea)
             return;
         try
         {
@@ -129,18 +135,32 @@ public sealed unsafe class DutyAutomation : IDisposable
                 : string.Empty;
             if (prompt.Length == 0)
                 prompt = PromptText(addon);
-            if (!IsReadyCheck(prompt))
+            if (!ShouldAnswerYes(prompt))
                 return;
             readyYesAddon = (nint)addon;
             readyYesAt = DateTime.UtcNow + ClickDelay;
         }
         catch (Exception e)
         {
-            log.Error(e, "Ready check detection failed");
+            log.Error(e, "Yes/No detection failed");
         }
     }
 
-    private bool IsReadyCheck(string prompt) => Squash(prompt).Contains(readyCheckPrompt, StringComparison.Ordinal);
+    /// <summary>First non-empty line of an Addon sheet row, without whitespace.</summary>
+    private static string FirstLine(IDataManager data, uint row)
+    {
+        var text = data.GetExcelSheet<Lumina.Excel.Sheets.Addon>().GetRowOrDefault(row)?.Text.ExtractText() ?? string.Empty;
+        return Squash(text.Split('\n', '\r').FirstOrDefault(l => l.Trim().Length > 0) ?? string.Empty);
+    }
+
+    /// <summary>True for the Yes/No questions this plugin answers by itself, as switched on in the settings.</summary>
+    private bool ShouldAnswerYes(string prompt)
+    {
+        var text = Squash(prompt);
+        if (config.AutoReadyCheck && readyCheckPrompt.Length >= 6 && text.Contains(readyCheckPrompt, StringComparison.Ordinal))
+            return true;
+        return config.AutoSealedArea && sealedAreaPrompt.Length >= 6 && text.Contains(sealedAreaPrompt, StringComparison.Ordinal);
+    }
 
     /// <summary>The question a Yes/No window shows: the value it was opened with, else the text on screen.</summary>
     private static string PromptText(AtkUnitBase* addon)
@@ -235,8 +255,7 @@ public sealed unsafe class DutyAutomation : IDisposable
             readyYesAt = null;
             var addon = (AtkUnitBase*)gameGui.GetAddonByName("SelectYesno").Address;
             // Only answer the same window that asked; another Yes/No may have replaced it by now.
-            if (config.AutoReadyCheck && addon != null && (nint)addon == readyYesAddon && addon->IsVisible
-                && IsReadyCheck(PromptText(addon)))
+            if (addon != null && (nint)addon == readyYesAddon && addon->IsVisible && ShouldAnswerYes(PromptText(addon)))
                 Fire(addon, 0); // 0 = Yes
         }
     }

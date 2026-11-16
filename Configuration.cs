@@ -66,6 +66,9 @@ public class Configuration : IPluginConfiguration
     /// <summary>Answer Yes to ready checks by itself.</summary>
     public bool AutoReadyCheck { get; set; } = true;
 
+    /// <summary>Answer Yes to "Move immediately to sealed area?" by itself.</summary>
+    public bool AutoSealedArea { get; set; } = true;
+
     /// <summary>Leave a finished duty once the coffers are open and the loot rolls are over.</summary>
     public bool AutoLeaveDuty { get; set; } = true;
 

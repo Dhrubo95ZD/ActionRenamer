@@ -13,10 +13,11 @@ Settings: `/actionrenamer`.
 
 ## Duty helpers
 
-The **Duty** tab in the settings has three switches, all on by default:
+The **Duty** tab in the settings has four switches, all on by default:
 
 - **Press Commence when a duty pops.**
 - **Answer Yes to ready checks.**
+- **Answer Yes to "Move immediately to sealed area?"**
 - **Leave the duty when it is finished and the loot is done.** After the duty completes, the plugin waits for the treasure coffers to be opened (two minutes at most) and for every loot item to be rolled for and handed out, then leaves. It never leaves in combat or during a cutscene, and it only acts in Duty Finder content. It does not roll for you. Tick *Leave as soon as my own rolls are in* to stop waiting for the rest of the party.
 
 To stay in a duty you just finished, type `/actionrenamer stay`.

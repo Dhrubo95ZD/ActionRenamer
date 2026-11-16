@@ -155,6 +155,7 @@ public sealed class ConfigWindow : Window
         var dirty = false;
         dirty |= Check("Press Commence when a duty pops", () => cfg.AutoCommenceDuty, v => cfg.AutoCommenceDuty = v);
         dirty |= Check("Answer Yes to ready checks", () => cfg.AutoReadyCheck, v => cfg.AutoReadyCheck = v);
+        dirty |= Check("Answer Yes to \"Move immediately to sealed area?\"", () => cfg.AutoSealedArea, v => cfg.AutoSealedArea = v);
 
         ImGui.Separator();
         dirty |= Check("Leave the duty when it is finished and the loot is done", () => cfg.AutoLeaveDuty, v => cfg.AutoLeaveDuty = v);
