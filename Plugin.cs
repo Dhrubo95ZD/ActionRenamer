@@ -28,11 +28,13 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static ICondition Condition { get; private set; } = null!;
     [PluginService] internal static IObjectTable Objects { get; private set; } = null!;
     [PluginService] internal static IClientState ClientState { get; private set; } = null!;
+    [PluginService] internal static IPartyList Party { get; private set; } = null!;
 
     public Configuration Config { get; }
     public IconPackInstaller Icons { get; }
     public RenameEngine Engine { get; }
     public DutyAutomation Duty { get; }
+    public FollowTank Follow { get; }
 
     /// <summary>Every distinct status effect name in the game, sorted.</summary>
     public IReadOnlyList<string> StatusNames { get; }
@@ -112,6 +114,7 @@ public sealed class Plugin : IDalamudPlugin
         Icons = new IconPackInstaller(PluginInterface, Framework, ChatGui, Log, Config, () => PluginInterface.SavePluginConfig(Config));
 
         Duty = new DutyAutomation(AddonLifecycle, Framework, GameGui, DutyState, Condition, Objects, ClientState, Data, ChatGui, Log, Config);
+        Follow = new FollowTank(Framework, Condition, Party, Objects, CommandManager, ChatGui, Log, Config);
 
         configWindow = new ConfigWindow(this, Data);
         windows.AddWindow(configWindow);
@@ -150,6 +153,7 @@ public sealed class Plugin : IDalamudPlugin
         PluginInterface.UiBuilder.OpenMainUi -= configWindow.Toggle;
         CommandManager.RemoveHandler(Command);
         windows.RemoveAllWindows();
+        Follow.Dispose();
         Duty.Dispose();
         Icons.Dispose();
         messageRewriter.Dispose();

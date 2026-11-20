@@ -158,6 +158,18 @@ public sealed class ConfigWindow : Window
         dirty |= Check("Answer Yes to \"Move immediately to sealed area?\"", () => cfg.AutoSealedArea, v => cfg.AutoSealedArea = v);
 
         ImGui.Separator();
+        dirty |= Check("Make Boss Mod follow the tank in duties", () => cfg.AutoFollowTank, v => cfg.AutoFollowTank = v);
+        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Needs Boss Mod. It follows the tank between fights and dodges on its own during boss fights. You never follow when you are the tank.");
+        ImGui.BeginDisabled(!cfg.AutoFollowTank);
+        var followDistance = cfg.FollowDistance;
+        ImGui.SetNextItemWidth(160);
+        if (ImGui.SliderInt("Distance to the tank (yalms)", ref followDistance, 3, 25))
+            cfg.FollowDistance = followDistance;
+        dirty |= ImGui.IsItemDeactivatedAfterEdit();
+        ImGui.EndDisabled();
+        ImGui.TextDisabled(plugin.Follow.Status);
+
+        ImGui.Separator();
         dirty |= Check("Leave the duty when it is finished and the loot is done", () => cfg.AutoLeaveDuty, v => cfg.AutoLeaveDuty = v);
         ImGui.TextWrapped("Waits until the duty is complete, the treasure coffers are opened (two minutes at most), and all loot has been rolled for and handed out. Never leaves in combat or during a cutscene. Duty Finder content only. This plugin does not roll for you.");
 

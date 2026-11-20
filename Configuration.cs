@@ -69,6 +69,12 @@ public class Configuration : IPluginConfiguration
     /// <summary>Answer Yes to "Move immediately to sealed area?" by itself.</summary>
     public bool AutoSealedArea { get; set; } = true;
 
+    /// <summary>In Duty Finder content, have Boss Mod's AI follow the party's tank between fights.</summary>
+    public bool AutoFollowTank { get; set; } = true;
+
+    /// <summary>How close Boss Mod keeps you to the tank, in yalms.</summary>
+    public int FollowDistance { get; set; } = 4;
+
     /// <summary>Leave a finished duty once the coffers are open and the loot rolls are over.</summary>
     public bool AutoLeaveDuty { get; set; } = true;
 
