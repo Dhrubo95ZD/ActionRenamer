@@ -161,14 +161,58 @@ public sealed partial class ConfigWindow : Window
         chips.Add(plugin.Config.Enabled ? ("Renaming on", Dalamud.Interface.Colors.ImGuiColors.HealerGreen) : ("Renaming off", Dalamud.Interface.Colors.ImGuiColors.DalamudGrey));
         if (plugin.Queue.Running)
             chips.Add(($"Queue {plugin.Queue.RunsDone}/{plugin.Queue.RunsWanted}", Dalamud.Interface.Colors.ImGuiColors.ParsedGold));
-        if (plugin.Config.AutoFollowTank)
-            chips.Add(("Follow tank", Dalamud.Interface.Colors.ImGuiColors.TankBlue));
         foreach (var (text, color) in chips)
         {
             ImGui.SameLine();
             ImGui.TextColored(color, $"[{text}]");
         }
+
+        // The follow chip is a button: click it to pick who Boss Mod follows, or to turn following off.
+        ImGui.SameLine();
+        var followColor = plugin.Config.AutoFollowTank ? Dalamud.Interface.Colors.ImGuiColors.TankBlue : Dalamud.Interface.Colors.ImGuiColors.DalamudGrey;
+        ImGui.TextColored(followColor, $"[{plugin.Follow.ChipText}]");
+        if (ImGui.IsItemHovered())
+        {
+            ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
+            ImGui.SetTooltip("Click to choose who to follow");
+        }
+        if (ImGui.IsItemClicked())
+            ImGui.OpenPopup("followmenu");
+        DrawFollowMenu();
+
         ImGui.Spacing();
+    }
+
+    /// <summary>Who Boss Mod follows: on/off, automatic (the tank), or a party member by initials and role.</summary>
+    private void DrawFollowMenu()
+    {
+        if (!ImGui.BeginPopup("followmenu"))
+            return;
+        var cfg = plugin.Config;
+        var follow = plugin.Follow;
+
+        if (ImGui.MenuItem("Follow someone", string.Empty, cfg.AutoFollowTank))
+        {
+            cfg.AutoFollowTank = !cfg.AutoFollowTank;
+            Plugin.PluginInterface.SavePluginConfig(cfg);
+        }
+        ImGui.Separator();
+
+        using (Dalamud.Interface.Utility.Raii.ImRaii.Disabled(!cfg.AutoFollowTank))
+        {
+            if (ImGui.MenuItem("Automatic (the tank)", string.Empty, follow.ChosenName == null))
+                follow.Choose(null);
+
+            var candidates = follow.Candidates();
+            if (candidates.Count == 0)
+                ImGui.TextDisabled("No one else in your party.");
+            foreach (var c in candidates)
+            {
+                if (ImGui.MenuItem($"{c.Label}##{c.Name}", string.Empty, follow.ChosenName == c.Name))
+                    follow.Choose(c.Name);
+            }
+        }
+        ImGui.EndPopup();
     }
 
     private bool DrawSkills(Configuration cfg)
