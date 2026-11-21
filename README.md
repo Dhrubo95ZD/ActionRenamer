@@ -30,6 +30,15 @@ The **Auto-queue** tab lists every duty the Duty Finder can queue for, grouped l
 
 Pick a duty, set the number of runs and press **Start**. The plugin queues through the Duty Finder, and after each run it waits a few seconds and queues again until the runs are done. With *Commence* and *Leave the duty* switched on in Duty helpers, the whole loop runs by itself. Queue alone or as the party leader. Press **Stop** to end it; if you withdraw from the queue yourself while it runs, it queues again.
 
+## Ask Claude
+
+Type `/askclaude <question>` (or `/ask` when no other plugin uses it), or open the chat from the General page. Claude answers questions about the game: where a quest starts, how to unlock a duty, what an item is.
+
+- It runs through the Claude Code app installed on the PC and your own Claude subscription. There is no API key, and each question counts toward your plan's usage.
+- The cheaper Haiku model is the default; Sonnet can be picked on the General page.
+- Claude gets only your question, your job, level and zone, and matching entries from the game's own data (duties, quests with where they start, items). It can search the web when that is not enough.
+- Claude Code runs with everything else switched off: no file or shell tools, no settings, hooks or MCP servers.
+
 ## My plugins
 
 The **My plugins** tab in the settings lists every plugin I use, shows which are installed, and opens the plugin installer on each missing one. On a new PC, before anything else is installed, use the list below.

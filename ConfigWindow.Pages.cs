@@ -86,6 +86,36 @@ public sealed partial class ConfigWindow
         ImGui.TextColored(ImGuiColors.DalamudGrey, plugin.Icons.Status);
         ImGui.Unindent();
 
+        Section("Ask Claude", "a chat about the game, through Claude Code on this PC");
+        dirty |= Toggle("Ask Claude chat and /ask command", () => cfg.AskEnabled, v => cfg.AskEnabled = v,
+            "Uses the Claude Code app installed on this PC and your Claude subscription. No API key. Each question counts toward your plan's usage. "
+            + "Claude only gets your question, your job, level and zone, and matching game data.");
+        using (Dalamud.Interface.Utility.Raii.ImRaii.Disabled(!cfg.AskEnabled))
+        {
+            ImGui.Indent();
+            ImGui.AlignTextToFramePadding();
+            ImGui.TextUnformatted("Model");
+            ImGui.SameLine();
+            if (ImGui.RadioButton("Haiku (cheaper)", cfg.AskModel != "sonnet")) { cfg.AskModel = "haiku"; dirty = true; }
+            ImGui.SameLine();
+            if (ImGui.RadioButton("Sonnet (smarter)", cfg.AskModel == "sonnet")) { cfg.AskModel = "sonnet"; dirty = true; }
+            ImGui.Unindent();
+            dirty |= Toggle("Search the web when the game data is not enough", () => cfg.AskWebSearch, v => cfg.AskWebSearch = v,
+                "Slower, but finds guides and strategies that are not in the game files.");
+            ImGui.Indent();
+            if (ImGuiComponents.IconButtonWithText(FontAwesomeIcon.Comments, "Open the chat"))
+                plugin.AskWindow.IsOpen = true;
+            ImGui.SameLine();
+            ImGui.AlignTextToFramePadding();
+            ImGui.TextColored(ImGuiColors.DalamudGrey, "or type /askclaude <question> (also /ask if no other plugin uses it)");
+            var path = cfg.ClaudePath;
+            ImGui.SetNextItemWidth(360);
+            if (ImGui.InputTextWithHint("Claude Code path", plugin.Ask.ClaudePath, ref path, 260))
+                cfg.ClaudePath = path;
+            dirty |= ImGui.IsItemDeactivatedAfterEdit();
+            ImGui.Unindent();
+        }
+
         Section("Troubleshooting");
         dirty |= Toggle("Write each rename to the log", () => cfg.LogChanges, v => cfg.LogChanges = v, "For finding text that is not renamed. Open the log with /xllog.");
 

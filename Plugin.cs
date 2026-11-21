@@ -119,18 +119,62 @@ public sealed class Plugin : IDalamudPlugin
         Follow = new FollowTank(Framework, Condition, Party, Objects, CommandManager, ChatGui, Log, Config);
         Duties = new DutyCatalog(Data);
         Queue = new AutoQueue(Framework, Condition, GameGui, Party, Objects, ChatGui, Log, Config, Duties);
+        Knowledge = new GameKnowledge(Data, Duties);
+        Ask = new AskClaude(Config, Knowledge, Log, PluginInterface.ConfigDirectory.FullName);
 
         configWindow = new ConfigWindow(this, Data);
         windows.AddWindow(configWindow);
+        AskWindow = new AskWindow(this);
+        windows.AddWindow(AskWindow);
 
         CommandManager.AddHandler(Command, new CommandInfo(OnCommand)
         {
             HelpMessage = "Open Action Renamer settings. \"/actionrenamer stay\" keeps you in the duty you just finished.",
         });
+        // "/ask" may belong to another plugin; "/askclaude" always works.
+        askCommands.Add(AskCommand);
+        CommandManager.AddHandler(AskCommand, new CommandInfo(OnAsk) { HelpMessage = "Ask Claude about the game, e.g. /askclaude where does the Ifrit quest start" });
+        if (CommandManager.AddHandler("/ask", new CommandInfo(OnAsk) { HelpMessage = "Ask Claude about the game (same as /askclaude)." }))
+            askCommands.Add("/ask");
 
         PluginInterface.UiBuilder.Draw += windows.Draw;
         PluginInterface.UiBuilder.OpenConfigUi += configWindow.Toggle;
         PluginInterface.UiBuilder.OpenMainUi += configWindow.Toggle;
+    }
+
+    private const string AskCommand = "/askclaude";
+    private readonly List<string> askCommands = new();
+
+    public GameKnowledge Knowledge { get; }
+    public AskClaude Ask { get; }
+    public AskWindow AskWindow { get; }
+
+    private void OnAsk(string command, string arguments)
+    {
+        if (!Config.AskEnabled)
+        {
+            ChatGui.Print("[Action Renamer] Ask Claude is switched off in the settings (General page).");
+            return;
+        }
+        AskWindow.AskNow(arguments);
+    }
+
+    /// <summary>What Claude is told about you: job, level, zone and duty. Read on the game thread.</summary>
+    public string PlayerContext()
+    {
+        var me = Objects.LocalPlayer;
+        if (me == null)
+            return "not logged in";
+        var job = me.ClassJob.ValueNullable?.Name.ExtractText() ?? "unknown job";
+        var zone = Data.GetExcelSheet<Lumina.Excel.Sheets.TerritoryType>().GetRowOrDefault(ClientState.TerritoryType)?.PlaceName.ValueNullable?.Name.ExtractText() ?? "unknown zone";
+        var context = $"level {me.Level} {job}, in {zone}";
+        unsafe
+        {
+            var game = FFXIVClientStructs.FFXIV.Client.Game.GameMain.Instance();
+            if (game != null && game->CurrentContentFinderConditionId != 0 && Duties.ById.TryGetValue(game->CurrentContentFinderConditionId, out var duty))
+                context += $", inside the duty {duty.Name}";
+        }
+        return context;
     }
 
     private void OnCommand(string command, string arguments)
@@ -156,6 +200,8 @@ public sealed class Plugin : IDalamudPlugin
         PluginInterface.UiBuilder.OpenConfigUi -= configWindow.Toggle;
         PluginInterface.UiBuilder.OpenMainUi -= configWindow.Toggle;
         CommandManager.RemoveHandler(Command);
+        foreach (var c in askCommands)
+            CommandManager.RemoveHandler(c);
         windows.RemoveAllWindows();
         Queue.Dispose();
         Follow.Dispose();

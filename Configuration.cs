@@ -72,6 +72,18 @@ public class Configuration : IPluginConfiguration
     /// <summary>Answer Yes to "Accept Raise from ...?" by itself.</summary>
     public bool AutoAcceptRaise { get; set; } = true;
 
+    /// <summary>Ask Claude: chat window and /ask command, answered through Claude Code on this PC.</summary>
+    public bool AskEnabled { get; set; } = true;
+
+    /// <summary>Ask Claude: "haiku" (cheaper, the default) or "sonnet".</summary>
+    public string AskModel { get; set; } = "haiku";
+
+    /// <summary>Ask Claude: let it search the web when the game data does not answer.</summary>
+    public bool AskWebSearch { get; set; } = true;
+
+    /// <summary>Ask Claude: full path to claude.exe; empty finds it by itself.</summary>
+    public string ClaudePath { get; set; } = string.Empty;
+
     /// <summary>Auto-queue: the Duty Finder duty (ContentFinderCondition row) to queue for.</summary>
     public uint QueueDutyId { get; set; }
 
