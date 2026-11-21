@@ -69,6 +69,21 @@ public class Configuration : IPluginConfiguration
     /// <summary>Answer Yes to "Move immediately to sealed area?" by itself.</summary>
     public bool AutoSealedArea { get; set; } = true;
 
+    /// <summary>Answer Yes to "Accept Raise from ...?" by itself.</summary>
+    public bool AutoAcceptRaise { get; set; } = true;
+
+    /// <summary>Auto-queue: the Duty Finder duty (ContentFinderCondition row) to queue for.</summary>
+    public uint QueueDutyId { get; set; }
+
+    /// <summary>Auto-queue: how many runs to do.</summary>
+    public int QueueRuns { get; set; } = 5;
+
+    /// <summary>Auto-queue: queue with "Unrestricted Party" (unsynced). Only works with a full premade party.</summary>
+    public bool QueueUnsynced { get; set; }
+
+    /// <summary>Auto-queue: seconds to wait after a run before queueing again.</summary>
+    public int QueueDelaySeconds { get; set; } = 5;
+
     /// <summary>In Duty Finder content, have Boss Mod's AI follow the party's tank between fights.</summary>
     public bool AutoFollowTank { get; set; } = true;
 

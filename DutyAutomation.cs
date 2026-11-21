@@ -26,6 +26,9 @@ public sealed unsafe class DutyAutomation : IDisposable
     /// <summary>Addon sheet row of "Move immediately to sealed area?", asked when a boss arena seals with you outside it.</summary>
     private const uint SealedAreaPromptRow = 102631;
 
+    /// <summary>Addon sheet row of "Accept Raise?"; the prompt itself reads "Accept Raise from &lt;name&gt;?".</summary>
+    private const uint RaisePromptRow = 112;
+
     /// <summary>Wait this long after a window opens before pressing its button, so the window is fully set up.</summary>
     private static readonly TimeSpan ClickDelay = TimeSpan.FromMilliseconds(600);
 
@@ -57,6 +60,9 @@ public sealed unsafe class DutyAutomation : IDisposable
 
     /// <summary>The sealed area question in the game's language, without whitespace.</summary>
     private readonly string sealedAreaPrompt;
+
+    /// <summary>"Accept Raise" in the game's language, without whitespace or the question mark.</summary>
+    private readonly string raisePrompt;
 
     private DateTime? commenceAt;
     private DateTime? readyYesAt;
@@ -93,6 +99,7 @@ public sealed unsafe class DutyAutomation : IDisposable
 
         readyCheckPrompt = FirstLine(data, ReadyCheckPromptRow);
         sealedAreaPrompt = FirstLine(data, SealedAreaPromptRow);
+        raisePrompt = FirstLine(data, RaisePromptRow).TrimEnd('?', '？', '.', '。');
 
         lifecycle.RegisterListener(AddonEvent.PostSetup, "ContentsFinderConfirm", OnDutyPop);
         lifecycle.RegisterListener(AddonEvent.PostSetup, "SelectYesno", OnYesNo);
@@ -122,7 +129,7 @@ public sealed unsafe class DutyAutomation : IDisposable
 
     private void OnYesNo(AddonEvent type, AddonArgs args)
     {
-        if (!config.AutoReadyCheck && !config.AutoSealedArea)
+        if (!config.AutoReadyCheck && !config.AutoSealedArea && !config.AutoAcceptRaise)
             return;
         try
         {
@@ -159,7 +166,9 @@ public sealed unsafe class DutyAutomation : IDisposable
         var text = Squash(prompt);
         if (config.AutoReadyCheck && readyCheckPrompt.Length >= 6 && text.Contains(readyCheckPrompt, StringComparison.Ordinal))
             return true;
-        return config.AutoSealedArea && sealedAreaPrompt.Length >= 6 && text.Contains(sealedAreaPrompt, StringComparison.Ordinal);
+        if (config.AutoSealedArea && sealedAreaPrompt.Length >= 6 && text.Contains(sealedAreaPrompt, StringComparison.Ordinal))
+            return true;
+        return config.AutoAcceptRaise && raisePrompt.Length >= 4 && text.StartsWith(raisePrompt, StringComparison.Ordinal);
     }
 
     /// <summary>The question a Yes/No window shows: the value it was opened with, else the text on screen.</summary>

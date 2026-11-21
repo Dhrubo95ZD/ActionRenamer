@@ -35,6 +35,8 @@ public sealed class Plugin : IDalamudPlugin
     public RenameEngine Engine { get; }
     public DutyAutomation Duty { get; }
     public FollowTank Follow { get; }
+    public DutyCatalog Duties { get; }
+    public AutoQueue Queue { get; }
 
     /// <summary>Every distinct status effect name in the game, sorted.</summary>
     public IReadOnlyList<string> StatusNames { get; }
@@ -115,6 +117,8 @@ public sealed class Plugin : IDalamudPlugin
 
         Duty = new DutyAutomation(AddonLifecycle, Framework, GameGui, DutyState, Condition, Objects, ClientState, Data, ChatGui, Log, Config);
         Follow = new FollowTank(Framework, Condition, Party, Objects, CommandManager, ChatGui, Log, Config);
+        Duties = new DutyCatalog(Data);
+        Queue = new AutoQueue(Framework, Condition, GameGui, Party, Objects, ChatGui, Log, Config, Duties);
 
         configWindow = new ConfigWindow(this, Data);
         windows.AddWindow(configWindow);
@@ -153,6 +157,7 @@ public sealed class Plugin : IDalamudPlugin
         PluginInterface.UiBuilder.OpenMainUi -= configWindow.Toggle;
         CommandManager.RemoveHandler(Command);
         windows.RemoveAllWindows();
+        Queue.Dispose();
         Follow.Dispose();
         Duty.Dispose();
         Icons.Dispose();

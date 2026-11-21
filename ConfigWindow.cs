@@ -10,7 +10,7 @@ using Lumina.Excel.Sheets;
 namespace ActionRenamer;
 
 /// <summary>Settings: per-skill editor, word rules, and switches.</summary>
-public sealed class ConfigWindow : Window
+public sealed partial class ConfigWindow : Window
 {
     private record ActionEntry(uint Id, string Name, HashSet<uint> Jobs, bool IsTrait)
     {
@@ -34,7 +34,7 @@ public sealed class ConfigWindow : Window
     public ConfigWindow(Plugin plugin, IDataManager data) : base("Action Renamer###ActionRenamerConfig")
     {
         this.plugin = plugin;
-        SizeConstraints = new WindowSizeConstraints { MinimumSize = new Vector2(700, 420), MaximumSize = new Vector2(4000, 4000) };
+        SizeConstraints = new WindowSizeConstraints { MinimumSize = new Vector2(780, 480), MaximumSize = new Vector2(4000, 4000) };
 
         var classJobs = data.GetExcelSheet<ClassJob>().Where(j => j.RowId > 0 && !j.Name.IsEmpty).ToList();
 
@@ -105,23 +105,25 @@ public sealed class ConfigWindow : Window
         var cfg = plugin.Config;
         var dirty = false;
 
-        dirty |= Check("Enabled", () => cfg.Enabled, v => cfg.Enabled = v);
-        ImGui.SameLine(); dirty |= Check("Game UI text", () => cfg.ApplyToUiText, v => cfg.ApplyToUiText = v);
-        ImGui.SameLine(); dirty |= Check("Chat", () => cfg.ApplyToChat, v => cfg.ApplyToChat = v);
-        ImGui.SameLine(); dirty |= Check("Fly text", () => cfg.ApplyToFlyText, v => cfg.ApplyToFlyText = v);
-        ImGui.SameLine(); dirty |= Check("Hide ALL skill descriptions", () => cfg.HideAllDescriptions, v => cfg.HideAllDescriptions = v);
-        ImGui.SameLine(); dirty |= Check("Log changes", () => cfg.LogChanges, v => cfg.LogChanges = v);
-        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Writes each replacement to dalamud.log, for troubleshooting.");
-
-        dirty |= Check("Install sci-fi icons in Penumbra", () => cfg.AutoInstallIcons, v => cfg.AutoInstallIcons = v);
-        ImGui.SameLine();
-        if (ImGui.SmallButton("Reinstall icons"))
-            plugin.Icons.Reinstall();
-        ImGui.SameLine();
-        ImGui.TextDisabled(plugin.Icons.Status);
+        DrawHeader();
 
         if (ImGui.BeginTabBar("tabs"))
         {
+            if (ImGui.BeginTabItem("General"))
+            {
+                dirty |= DrawGeneral(cfg);
+                ImGui.EndTabItem();
+            }
+            if (ImGui.BeginTabItem("Duty helpers"))
+            {
+                DrawDutyHelpers(cfg);
+                ImGui.EndTabItem();
+            }
+            if (ImGui.BeginTabItem("Auto-queue"))
+            {
+                DrawAutoQueue(cfg);
+                ImGui.EndTabItem();
+            }
             if (ImGui.BeginTabItem("Skills"))
             {
                 dirty |= DrawSkills(cfg);
@@ -137,11 +139,6 @@ public sealed class ConfigWindow : Window
                 dirty |= DrawRules(cfg);
                 ImGui.EndTabItem();
             }
-            if (ImGui.BeginTabItem("Duty"))
-            {
-                DrawDuty(cfg);
-                ImGui.EndTabItem();
-            }
             ImGui.EndTabBar();
         }
 
@@ -149,50 +146,29 @@ public sealed class ConfigWindow : Window
             plugin.SaveAndApply();
     }
 
-    /// <summary>Duty switches save on their own; they do not need the rename engine rebuilt.</summary>
-    private void DrawDuty(Configuration cfg)
+    /// <summary>Title line with what is running right now.</summary>
+    private void DrawHeader()
     {
-        var dirty = false;
-        dirty |= Check("Press Commence when a duty pops", () => cfg.AutoCommenceDuty, v => cfg.AutoCommenceDuty = v);
-        dirty |= Check("Answer Yes to ready checks", () => cfg.AutoReadyCheck, v => cfg.AutoReadyCheck = v);
-        dirty |= Check("Answer Yes to \"Move immediately to sealed area?\"", () => cfg.AutoSealedArea, v => cfg.AutoSealedArea = v);
-
-        ImGui.Separator();
-        dirty |= Check("Make Boss Mod follow the tank in duties", () => cfg.AutoFollowTank, v => cfg.AutoFollowTank = v);
-        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Needs Boss Mod. It follows the tank between fights and dodges on its own during boss fights. You never follow when you are the tank.");
-        ImGui.BeginDisabled(!cfg.AutoFollowTank);
-        var followDistance = cfg.FollowDistance;
-        ImGui.SetNextItemWidth(160);
-        if (ImGui.SliderInt("Distance to the tank (yalms)", ref followDistance, 3, 25))
-            cfg.FollowDistance = followDistance;
-        dirty |= ImGui.IsItemDeactivatedAfterEdit();
-        ImGui.EndDisabled();
-        ImGui.TextDisabled(plugin.Follow.Status);
-
-        ImGui.Separator();
-        dirty |= Check("Leave the duty when it is finished and the loot is done", () => cfg.AutoLeaveDuty, v => cfg.AutoLeaveDuty = v);
-        ImGui.TextWrapped("Waits until the duty is complete, the treasure coffers are opened (two minutes at most), and all loot has been rolled for and handed out. Never leaves in combat or during a cutscene. Duty Finder content only. This plugin does not roll for you.");
-
-        ImGui.BeginDisabled(!cfg.AutoLeaveDuty);
-        dirty |= Check("Leave as soon as my own rolls are in", () => cfg.AutoLeaveAfterOwnRolls, v => cfg.AutoLeaveAfterOwnRolls = v);
-        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Off: wait until every item is handed out. On: do not wait for the rest of the party to roll.");
-        var delay = cfg.AutoLeaveDelaySeconds;
-        ImGui.SetNextItemWidth(160);
-        if (ImGui.SliderInt("Seconds to wait before leaving", ref delay, 1, 60))
-            cfg.AutoLeaveDelaySeconds = delay;
-        dirty |= ImGui.IsItemDeactivatedAfterEdit();
-        ImGui.EndDisabled();
-
-        ImGui.TextDisabled(plugin.Duty.Status);
-        ImGui.TextDisabled("To stay in a finished duty, type /actionrenamer stay.");
-        if (dirty)
-            Plugin.PluginInterface.SavePluginConfig(cfg);
+        ImGui.TextColored(Dalamud.Interface.Colors.ImGuiColors.DalamudViolet, "Action Renamer");
+        ImGui.SameLine();
+        ImGui.TextDisabled($"v{typeof(Plugin).Assembly.GetName().Version?.ToString(3)}");
+        var chips = new System.Collections.Generic.List<(string, Vector4)>();
+        chips.Add(plugin.Config.Enabled ? ("Renaming on", Dalamud.Interface.Colors.ImGuiColors.HealerGreen) : ("Renaming off", Dalamud.Interface.Colors.ImGuiColors.DalamudGrey));
+        if (plugin.Queue.Running)
+            chips.Add(($"Queue {plugin.Queue.RunsDone}/{plugin.Queue.RunsWanted}", Dalamud.Interface.Colors.ImGuiColors.ParsedGold));
+        if (plugin.Config.AutoFollowTank)
+            chips.Add(("Follow tank", Dalamud.Interface.Colors.ImGuiColors.TankBlue));
+        foreach (var (text, color) in chips)
+        {
+            ImGui.SameLine();
+            ImGui.TextColored(color, $"[{text}]");
+        }
+        ImGui.Spacing();
     }
 
     private bool DrawSkills(Configuration cfg)
     {
         var dirty = false;
-        dirty |= Check("Sci-fi theme for job names, skills and traits", () => cfg.SkillThemeEnabled, v => cfg.SkillThemeEnabled = v);
         ImGui.TextWrapped("Grey text in \"New name\" is the theme name. Type to use your own instead. Empty description keeps the game text. Changes show the next time the game redraws that text (re-hover the skill or reopen the window).");
 
         ImGui.SetNextItemWidth(180);
