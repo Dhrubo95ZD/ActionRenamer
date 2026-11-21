@@ -75,6 +75,9 @@ public class Configuration : IPluginConfiguration
     /// <summary>Ask Claude: chat window and /ask command, answered through Claude Code on this PC.</summary>
     public bool AskEnabled { get; set; } = true;
 
+    /// <summary>Ask Claude: show a clickable "Ask Claude" entry in the status bar.</summary>
+    public bool AskStatusBar { get; set; } = true;
+
     /// <summary>Ask Claude: "haiku" (cheaper, the default) or "sonnet".</summary>
     public string AskModel { get; set; } = "haiku";
 

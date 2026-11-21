@@ -32,7 +32,7 @@ Pick a duty, set the number of runs and press **Start**. The plugin queues throu
 
 ## Ask Claude
 
-Type `/askclaude <question>` (or `/ask` when no other plugin uses it), or open the chat from the General page. Claude answers questions about the game: where a quest starts, how to unlock a duty, what an item is.
+Type `/askclaude <question>` (or `/ask` when no other plugin uses it), or click **Ask Claude** in the status bar at the bottom right, or open the chat from the General page. Claude answers questions about the game: where a quest starts, how to unlock a duty, what an item is.
 
 - It runs through the Claude Code app installed on the PC and your own Claude subscription. There is no API key, and each question counts toward your plan's usage.
 - The cheaper Haiku model is the default; Sonnet can be picked on the General page.

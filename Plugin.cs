@@ -29,6 +29,10 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static IObjectTable Objects { get; private set; } = null!;
     [PluginService] internal static IClientState ClientState { get; private set; } = null!;
     [PluginService] internal static IPartyList Party { get; private set; } = null!;
+    [PluginService] internal static IDtrBar DtrBar { get; private set; } = null!;
+
+    /// <summary>"Ask Claude" in the status bar at the bottom right; a click opens the chat.</summary>
+    private Dalamud.Game.Gui.Dtr.IDtrBarEntry? askEntry;
 
     public Configuration Config { get; }
     public IconPackInstaller Icons { get; }
@@ -137,9 +141,28 @@ public sealed class Plugin : IDalamudPlugin
         if (CommandManager.AddHandler("/ask", new CommandInfo(OnAsk) { HelpMessage = "Ask Claude about the game (same as /askclaude)." }))
             askCommands.Add("/ask");
 
-        PluginInterface.UiBuilder.Draw += windows.Draw;
+        try
+        {
+            askEntry = DtrBar.Get("Action Renamer: Ask Claude");
+            askEntry.Text = "Ask Claude";
+            askEntry.Tooltip = "Open the Ask Claude chat";
+            askEntry.OnClick = _ => AskWindow.Toggle();
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "Could not add the Ask Claude status bar button");
+        }
+
+        PluginInterface.UiBuilder.Draw += DrawUi;
         PluginInterface.UiBuilder.OpenConfigUi += configWindow.Toggle;
         PluginInterface.UiBuilder.OpenMainUi += configWindow.Toggle;
+    }
+
+    private void DrawUi()
+    {
+        if (askEntry != null)
+            askEntry.Shown = Config.AskEnabled && Config.AskStatusBar;
+        windows.Draw();
     }
 
     private const string AskCommand = "/askclaude";
@@ -196,7 +219,8 @@ public sealed class Plugin : IDalamudPlugin
 
     public void Dispose()
     {
-        PluginInterface.UiBuilder.Draw -= windows.Draw;
+        PluginInterface.UiBuilder.Draw -= DrawUi;
+        askEntry?.Remove();
         PluginInterface.UiBuilder.OpenConfigUi -= configWindow.Toggle;
         PluginInterface.UiBuilder.OpenMainUi -= configWindow.Toggle;
         CommandManager.RemoveHandler(Command);

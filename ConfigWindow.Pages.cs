@@ -100,6 +100,8 @@ public sealed partial class ConfigWindow
             ImGui.SameLine();
             if (ImGui.RadioButton("Sonnet (smarter)", cfg.AskModel == "sonnet")) { cfg.AskModel = "sonnet"; dirty = true; }
             ImGui.Unindent();
+            dirty |= Toggle("\"Ask Claude\" button in the status bar", () => cfg.AskStatusBar, v => cfg.AskStatusBar = v,
+                "A clickable entry at the bottom right of the screen, next to the other plugins' status. Click it to open or close the chat.");
             dirty |= Toggle("Search the web when the game data is not enough", () => cfg.AskWebSearch, v => cfg.AskWebSearch = v,
                 "Slower, but finds guides and strategies that are not in the game files.");
             ImGui.Indent();
