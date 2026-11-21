@@ -124,6 +124,11 @@ public sealed partial class ConfigWindow : Window
                 DrawAutoQueue(cfg);
                 ImGui.EndTabItem();
             }
+            if (ImGui.BeginTabItem("My plugins"))
+            {
+                DrawMySetup();
+                ImGui.EndTabItem();
+            }
             if (ImGui.BeginTabItem("Skills"))
             {
                 dirty |= DrawSkills(cfg);
