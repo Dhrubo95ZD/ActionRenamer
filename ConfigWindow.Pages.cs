@@ -139,6 +139,8 @@ public sealed partial class ConfigWindow
             "Answers Yes to \"Accept Raise from ...?\" as soon as someone raises you.");
 
         Section("Follow the tank", "needs Boss Mod");
+        dirty |= Toggle("Never let Boss Mod pull in unsynced duties", () => cfg.NoUnsyncedPulls, v => cfg.NoUnsyncedPulls = v,
+            "Boss Mod's AI normally attacks every enemy in unsynced duties, even a boss nobody has pulled. This switches that off, so it waits for the party.");
         dirty |= Toggle("Boss Mod follows the tank in duties", () => cfg.AutoFollowTank, v => cfg.AutoFollowTank = v,
             "Between fights you walk after the tank. During boss fights Boss Mod dodges instead. Nothing happens when you are the tank.");
         using (Dalamud.Interface.Utility.Raii.ImRaii.Disabled(!cfg.AutoFollowTank))

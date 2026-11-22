@@ -102,6 +102,9 @@ public class Configuration : IPluginConfiguration
     /// <summary>In Duty Finder content, have Boss Mod's AI follow the party's tank between fights.</summary>
     public bool AutoFollowTank { get; set; } = true;
 
+    /// <summary>Stop Boss Mod's AI from pulling enemies by itself in unsynced duties.</summary>
+    public bool NoUnsyncedPulls { get; set; } = true;
+
     /// <summary>How close Boss Mod keeps you to the tank, in yalms.</summary>
     public int FollowDistance { get; set; } = 4;
 

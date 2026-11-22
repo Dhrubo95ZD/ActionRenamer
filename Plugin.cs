@@ -122,6 +122,7 @@ public sealed class Plugin : IDalamudPlugin
         Duty = new DutyAutomation(AddonLifecycle, Framework, GameGui, DutyState, Condition, Objects, ClientState, Data, ChatGui, Log, Config);
         Follow = new FollowTank(Framework, Condition, Party, Objects, CommandManager, ChatGui, Log, Config);
         Duties = new DutyCatalog(Data);
+        bossModGuard = new BossModGuard(PluginInterface, Framework, Log, Config);
         Queue = new AutoQueue(Framework, Condition, GameGui, Party, Objects, ChatGui, Log, Config, Duties);
         Knowledge = new GameKnowledge(Data, Duties);
         Ask = new AskClaude(Config, Knowledge, Log, PluginInterface.ConfigDirectory.FullName);
@@ -164,6 +165,8 @@ public sealed class Plugin : IDalamudPlugin
             askEntry.Shown = Config.AskEnabled && Config.AskStatusBar;
         windows.Draw();
     }
+
+    private readonly BossModGuard bossModGuard;
 
     private const string AskCommand = "/askclaude";
     private readonly List<string> askCommands = new();
@@ -228,6 +231,7 @@ public sealed class Plugin : IDalamudPlugin
             CommandManager.RemoveHandler(c);
         windows.RemoveAllWindows();
         Queue.Dispose();
+        bossModGuard.Dispose();
         Follow.Dispose();
         Duty.Dispose();
         Icons.Dispose();
